@@ -12,7 +12,7 @@
  Target Server Version : 10001600
  File Encoding         : 65001
 
- Date: 16/04/2019 16:30:40
+ Date: 16/04/2019 16:53:02
 */
 
 
@@ -14498,27 +14498,6 @@ GO
 
 
 -- ----------------------------
--- Table structure for tblPurchaseInvoice
--- ----------------------------
-IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[tblPurchaseInvoice]') AND type IN ('U'))
-	DROP TABLE [dbo].[tblPurchaseInvoice]
-GO
-
-CREATE TABLE [dbo].[tblPurchaseInvoice] (
-  [purchaseReceivingNo] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL,
-  [transDate] datetime2(7)  NULL,
-  [refNo] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
-  [cardID] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
-  [totalAmount] decimal(20,2)  NULL,
-  [userID] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL
-)
-GO
-
-ALTER TABLE [dbo].[tblPurchaseInvoice] SET (LOCK_ESCALATION = TABLE)
-GO
-
-
--- ----------------------------
 -- Table structure for tblPurchaseOrder
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[tblPurchaseOrder]') AND type IN ('U'))
@@ -14552,6 +14531,34 @@ INSERT INTO [dbo].[tblPurchaseOrder] VALUES (N'PO-00001', N'2019-04-16 00:00:00.
 GO
 
 INSERT INTO [dbo].[tblPurchaseOrder] VALUES (N'PO-00001', N'2019-04-16 00:00:00.0000000', N'REQ-00001', N'SUP-00001', N'RM-00002', N'1', N'.00', N'.00', N'USR-00001', N'', N'0', N'2019-04-16 00:00:00.0000000')
+GO
+
+
+-- ----------------------------
+-- Table structure for tblPurchaseReceived
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[tblPurchaseReceived]') AND type IN ('U'))
+	DROP TABLE [dbo].[tblPurchaseReceived]
+GO
+
+CREATE TABLE [dbo].[tblPurchaseReceived] (
+  [purchaseReceivingNo] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NOT NULL,
+  [transDate] datetime2(7)  NULL,
+  [refNo] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [invoiceNo] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [cardID] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [itemNo] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [qty] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [uprice] decimal(20,2)  NULL,
+  [amount] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [userID] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [status] varchar(255) COLLATE SQL_Latin1_General_CP1_CI_AS  NULL,
+  [notimesedit] int  NULL,
+  [lastdateedit] datetime2(7)  NULL
+)
+GO
+
+ALTER TABLE [dbo].[tblPurchaseReceived] SET (LOCK_ESCALATION = TABLE)
 GO
 
 
@@ -16702,6 +16709,38 @@ GO
 
 
 -- ----------------------------
+-- Procedure structure for insert_Purchase_Receiving
+-- ----------------------------
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[insert_Purchase_Receiving]') AND type IN ('P', 'PC', 'RF', 'X'))
+	DROP PROCEDURE[dbo].[insert_Purchase_Receiving]
+GO
+
+CREATE PROCEDURE [dbo].[insert_Purchase_Receiving]
+@COMMAND AS int,
+  @TRANSNO AS varchar(255),
+	@REFNO AS VARCHAR(255),
+	@INVOICENO AS VARCHAR(255),
+	@CARDID AS VARCHAR(255),
+	@ITEMNO AS VARCHAR(255),
+	@QTY AS INT,
+	@UPRICE AS DECIMAL(20,2),
+	@AMOUNT AS DECIMAL(20,2),
+	@USERID AS VARCHAR(255),
+	@STATUS AS VARCHAR(255)
+AS
+BEGIN
+if @command = 0 begin
+INSERT INTO tblPurchaseReceived VALUES(@TRANSNO,CONVERT(VARCHAR,GETDATE(),111),@REFNO,@INVOICENO,@CARDID,@ITEMNO,@QTY,@UPRICE,@AMOUNT,@USERID,@STATUS,0,CONVERT(VARCHAR,GETDATE(),111))
+end
+else if @command = 1 begin
+update tblPurchaseReceived set invoiceNo = @invoiceno,cardID = @CARDID, ITEMNO = @ITEMNO, QTY = @QTY , UPRICE = @UPRICE , AMOUNT = @AMOUNT, USERID = @USERID, notimesedit = notimesedit + 1 , lastdateedit = CONVERT(VARCHAR,GETDATE(),111) 
+where purchasereceivingNo = @TRANSNO
+end
+END
+GO
+
+
+-- ----------------------------
 -- Procedure structure for get_AccountInfo
 -- ----------------------------
 IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[get_AccountInfo]') AND type IN ('P', 'PC', 'RF', 'X'))
@@ -17652,9 +17691,9 @@ GO
 
 
 -- ----------------------------
--- Primary Key structure for table tblPurchaseInvoice
+-- Primary Key structure for table tblPurchaseReceived
 -- ----------------------------
-ALTER TABLE [dbo].[tblPurchaseInvoice] ADD CONSTRAINT [PK__tblPurch__B10753874C8B54C9] PRIMARY KEY CLUSTERED ([purchaseReceivingNo])
+ALTER TABLE [dbo].[tblPurchaseReceived] ADD CONSTRAINT [PK__tblPurch__B10753874C8B54C9] PRIMARY KEY CLUSTERED ([purchaseReceivingNo])
 WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
 ON [PRIMARY]
 GO
