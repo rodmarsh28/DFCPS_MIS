@@ -170,16 +170,16 @@
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         If lblFormMode.Text = "QUOTATION" Then
             If MsgBox("Are you sure you want to post?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "WARNING") = MsgBoxResult.Yes Then
-                frmPaymentType.generatePaymentNo()
-                frmPaymentType.RECORDPAYMENTS()
+                frmPOPaymentType.generatePaymentNo()
+                frmPOPaymentType.RECORDPAYMENTS()
             End If
         ElseIf lblFormMode.Text = "SALES ORDER" Then
             If MsgBox("Are you sure you want to post?", MsgBoxStyle.Question + MsgBoxStyle.YesNo, "WARNING") = MsgBoxResult.Yes Then
-                frmPaymentType.generatePaymentNo()
-                frmPaymentType.RECORDPAYMENTS()
+                frmPOPaymentType.generatePaymentNo()
+                frmPOPaymentType.RECORDPAYMENTS()
             End If
         ElseIf lblFormMode.Text = "SALES INVOICE" Then
-            frmPaymentType.ShowDialog()
+            frmPOPaymentType.ShowDialog()
         End If
 
     End Sub

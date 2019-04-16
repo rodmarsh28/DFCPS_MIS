@@ -59,22 +59,27 @@ Public Class frmCardListForSelection
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        If formMode = "ReceivePayments" Then
-            frmReceivePayments.cardID = LV.SelectedItems(0).SubItems(0).Text
-            frmReceivePayments.txtCustomerName.Text = LV.SelectedItems(0).SubItems(1).Text
-            frmReceivePayments.totalBalance = LV.SelectedItems(0).SubItems(4).Text
-            Me.Close()
-        ElseIf formMode = "Sales Invoice" Then
-            frmSalesInvoice.CardID = LV.SelectedItems(0).SubItems(0).Text
-            frmSalesInvoice.txtName.Text = LV.SelectedItems(0).SubItems(1).Text
-            frmSalesInvoice.totalBalance = LV.SelectedItems(0).SubItems(4).Text
-            Me.Close()
-        ElseIf formMode = "Purchase Invoice" Then
-            frmPurchaseInvoice.CardID = LV.SelectedItems(0).SubItems(0).Text
-            frmPurchaseInvoice.txtName.Text = LV.SelectedItems(0).SubItems(1).Text
-            frmPurchaseInvoice.totalBalance = LV.SelectedItems(0).SubItems(4).Text
-            Me.Close()
-        End If
+        Try
+            If formMode = "ReceivePayments" Then
+                frmReceivePayments.cardID = LV.SelectedItems(0).SubItems(0).Text
+                frmReceivePayments.txtCustomerName.Text = LV.SelectedItems(0).SubItems(1).Text
+                frmReceivePayments.totalBalance = LV.SelectedItems(0).SubItems(4).Text
+                Me.Close()
+            ElseIf formMode = "Sales Invoice" Then
+                frmSalesInvoice.CardID = LV.SelectedItems(0).SubItems(0).Text
+                frmSalesInvoice.txtName.Text = LV.SelectedItems(0).SubItems(1).Text
+                frmSalesInvoice.totalBalance = LV.SelectedItems(0).SubItems(4).Text
+                Me.Close()
+            ElseIf formMode = "Purchase Invoice" Then
+                frmPurchases.CardID = LV.SelectedItems(0).SubItems(0).Text
+                frmPurchases.txtName.Text = LV.SelectedItems(0).SubItems(1).Text
+                frmPurchases.totalBalance = LV.SelectedItems(0).SubItems(4).Text
+                Me.Close()
+            End If
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub txtSearch_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtSearch.TextChanged

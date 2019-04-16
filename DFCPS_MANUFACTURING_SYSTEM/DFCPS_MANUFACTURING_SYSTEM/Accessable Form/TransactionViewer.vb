@@ -75,7 +75,7 @@ Public Class TransactionViewer
         End Try
     End Sub
 
-    Private Sub TransactionViewer_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
+    Private Sub TransactionViewer_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
         Me.Dispose()
     End Sub
 
@@ -106,7 +106,6 @@ Public Class TransactionViewer
                 End If
             End If
         Catch ex As Exception
-
         End Try
     End Sub
 
@@ -119,7 +118,7 @@ Public Class TransactionViewer
     End Sub
 
     Private Sub PreparePurchaseOrderToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PreparePurchaseOrderToolStripMenuItem.Click
-        frmPurchaseInvoice.txtRefNo.Text = LV.SelectedItems(0).SubItems(1).Text
-        frmPurchaseInvoice.ShowDialog()
+        frmPurchases.txtRefNo.Text = LV.SelectedItems(0).SubItems(1).Text
+        frmPurchases.ShowDialog()
     End Sub
 End Class

@@ -78,9 +78,9 @@
             sysSettings.insert_update_settingsVariable()
 
         ElseIf mode = "SalesDeposit" Then
-            frmPaymentType.txtDepositAcc.Text = dgv.CurrentRow.Cells(0).Value
-            sysSettings.settingsName = frmPaymentType.Text & "_DepositACC"
-            sysSettings.settingsValue = frmPaymentType.txtDepositAcc.Text
+            frmPOPaymentType.txtDepositAcc.Text = dgv.CurrentRow.Cells(0).Value
+            sysSettings.settingsName = frmPOPaymentType.Text & "_DepositACC"
+            sysSettings.settingsValue = frmPOPaymentType.txtDepositAcc.Text
             sysSettings.insert_update_settingsVariable()
 
         ElseIf mode = "ReceivedPayments" Then

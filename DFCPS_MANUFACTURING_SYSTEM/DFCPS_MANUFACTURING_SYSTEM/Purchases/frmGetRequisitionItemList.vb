@@ -6,7 +6,7 @@ Public Class frmGetRequisitionItemList
     Sub viewList()
         Try
             checkConn()
-            Dim cmd As New SqlCommand("select itemCode,[desc],req_qty from Item_requisition where requisition_no = '" & frmPurchaseInvoice.txtRefNo.Text & "'", conn)
+            Dim cmd As New SqlCommand("select itemCode,[desc],req_qty from Item_requisition where requisition_no = '" & frmPurchases.txtRefNo.Text & "'", conn)
             Dim da As New SqlDataAdapter(cmd)
             da.SelectCommand = cmd
             dt.Rows.Clear()

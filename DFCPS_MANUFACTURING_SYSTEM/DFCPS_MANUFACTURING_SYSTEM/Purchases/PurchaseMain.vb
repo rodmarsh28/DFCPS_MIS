@@ -5,13 +5,13 @@
     End Sub
 
     Private Sub WidthrawItemsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles WidthrawItemsToolStripMenuItem.Click
-        frmPurchaseInvoice.lblFormMode.Text = "PURCHASE ORDER"
-        frmPurchaseInvoice.ShowDialog()
+        frmPurchases.lblFormMode.Text = "PURCHASE ORDER"
+        frmPurchases.ShowDialog()
     End Sub
 
     Private Sub PreparePurchaseInvoiceToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PreparePurchaseInvoiceToolStripMenuItem.Click
-        frmPurchaseInvoice.lblFormMode.Text = "PURCHASE INVOICE"
-        frmPurchaseInvoice.ShowDialog()
+        frmPurchases.lblFormMode.Text = "PURCHASE INVOICE"
+        frmPurchases.ShowDialog()
     End Sub
 
     Private Sub PurchaseOrderHistoryToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PurchaseOrderHistoryToolStripMenuItem.Click

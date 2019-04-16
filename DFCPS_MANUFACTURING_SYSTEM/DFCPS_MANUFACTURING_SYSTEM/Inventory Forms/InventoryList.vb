@@ -12,7 +12,7 @@ Public Class InventoryList
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNewItem.Click
         If mode = "Item Requisition" Then
             AddNewItem.ShowDialog()
-        ElseIf mode = "Sales" Or mode = "Issuance" Or mode = "Purchase" Then
+        ElseIf mode = "Sales" Or mode = "Issuance" Or mode = "Purchases" Then
             frmAddItemsInventory.cmbItemType.SelectedIndex = 1
             frmAddItemsInventory.btnAdd.Text = "Add Item"
             frmAddItemsInventory.ShowDialog()

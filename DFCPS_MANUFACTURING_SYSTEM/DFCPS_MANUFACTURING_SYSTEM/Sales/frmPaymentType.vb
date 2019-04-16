@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
-Public Class frmPaymentType
+Public Class frmPOPaymentType
     Dim paymentNo
     Sub disposeForm()
         cmbPaymenType.SelectedIndex = -1

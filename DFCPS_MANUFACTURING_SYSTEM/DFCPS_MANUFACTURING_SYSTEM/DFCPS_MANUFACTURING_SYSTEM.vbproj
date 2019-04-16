@@ -16,6 +16,21 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -401,10 +416,10 @@
     <Compile Include="Inventory Forms\frmInventorySystemMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Accessable Form\frmItemRequisition.Designer.vb">
+    <Compile Include="Purchases\frmItemRequisition.Designer.vb">
       <DependentUpon>frmItemRequisition.vb</DependentUpon>
     </Compile>
-    <Compile Include="Accessable Form\frmItemRequisition.vb">
+    <Compile Include="Purchases\frmItemRequisition.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Inventory Forms\frmItemsIssuance.Designer.vb">
@@ -634,10 +649,16 @@
     <Compile Include="Purchases\frmGetRequisitionItemList.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\frmPurchaseInvoice.Designer.vb">
-      <DependentUpon>frmPurchaseInvoice.vb</DependentUpon>
+    <Compile Include="Purchases\frmPO_paymentType.Designer.vb">
+      <DependentUpon>frmPO_paymentType.vb</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\frmPurchaseInvoice.vb">
+    <Compile Include="Purchases\frmPO_paymentType.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\frmPurchases.Designer.vb">
+      <DependentUpon>frmPurchases.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\frmPurchases.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Purchases\PurchaseMain.Designer.vb">
@@ -1064,7 +1085,7 @@
     <EmbeddedResource Include="Inventory Forms\frmInventorySystemMain.resx">
       <DependentUpon>frmInventorySystemMain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Accessable Form\frmItemRequisition.resx">
+    <EmbeddedResource Include="Purchases\frmItemRequisition.resx">
       <DependentUpon>frmItemRequisition.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inventory Forms\frmItemsIssuance.resx">
@@ -1178,8 +1199,11 @@
     <EmbeddedResource Include="Purchases\frmGetRequisitionItemList.resx">
       <DependentUpon>frmGetRequisitionItemList.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\frmPurchaseInvoice.resx">
-      <DependentUpon>frmPurchaseInvoice.vb</DependentUpon>
+    <EmbeddedResource Include="Purchases\frmPO_paymentType.resx">
+      <DependentUpon>frmPO_paymentType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\frmPurchases.resx">
+      <DependentUpon>frmPurchases.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\PurchaseMain.resx">
       <DependentUpon>PurchaseMain.vb</DependentUpon>
@@ -1373,7 +1397,28 @@
   <ItemGroup>
     <None Include="Resources\icons8-speed-24 %282%29.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

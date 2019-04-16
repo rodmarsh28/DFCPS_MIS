@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Public Class Puchase_Requisition_class
-    Public command As String
+    Public command As Integer
     Public requisitionNo As String
     Public DepartmentNo As String
     Public remarks As String
@@ -18,6 +18,10 @@ Public Class Puchase_Requisition_class
     Public transNo As String
     Public src As String
     Public totAmount As Double
+    Public paymentType As String
+    Public dueDate As DateTime
+    Public paymentDesc As String
+
 
 
 
@@ -48,10 +52,30 @@ Public Class Puchase_Requisition_class
             checkConn()
             With cmd
                 .CommandType = CommandType.StoredProcedure
-                .Parameters.AddWithValue("@NO", SqlDbType.Int).Value = requisitionNo
-                .Parameters.AddWithValue("@SRC", SqlDbType.DateTime2).Value = Form.ActiveForm.Text
+                .Parameters.AddWithValue("@TRANSNO", SqlDbType.VarChar).Value = transNo
+                .Parameters.AddWithValue("@SRC", SqlDbType.VarChar).Value = Form.ActiveForm.Text
                 .Parameters.AddWithValue("@AMOUNT", SqlDbType.Decimal).Value = totAmount
                 .Parameters.AddWithValue("@userid", SqlDbType.VarChar).Value = MainForm.LBLID.Text
+            End With
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+    Public Sub insert_payables()
+        Try
+            Dim cmd As New SqlCommand("insert_update_payables", conn)
+            checkConn()
+            With cmd
+                .CommandType = CommandType.StoredProcedure
+                .Parameters.AddWithValue("@command", SqlDbType.Int).Value = command
+                .Parameters.AddWithValue("@refno", SqlDbType.VarChar).Value = transNo
+                .Parameters.AddWithValue("@SRC", SqlDbType.VarChar).Value = Form.ActiveForm.Text
+                .Parameters.AddWithValue("@paymenttype", SqlDbType.Decimal).Value = paymentType
+                .Parameters.AddWithValue("@duedate", SqlDbType.VarChar).Value = dueDate
+                .Parameters.AddWithValue("@paymentdesc", SqlDbType.VarChar).Value = paymentDesc
+                .Parameters.AddWithValue("@amount", SqlDbType.Decimal).Value = totAmount
+                .Parameters.AddWithValue("@status", SqlDbType.VarChar).Value = "waiting for receiving"
             End With
             cmd.ExecuteNonQuery()
         Catch ex As Exception
