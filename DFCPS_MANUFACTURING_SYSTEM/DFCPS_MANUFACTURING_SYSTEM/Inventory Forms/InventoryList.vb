@@ -27,9 +27,10 @@ Public Class InventoryList
         ElseIf mode = "Purchases" Then
             cmd = New SqlCommand("get_item_buyable", conn)
             dgv.Columns("Column3").HeaderText = "Sell Price"
-        ElseIf mode = "Issuance" Or mode = "Item Requisition" Then
+        ElseIf mode = "Issuance" Or mode = "Item Requisition" Or mode = "Receiving" Then
             cmd = New SqlCommand("get_item_inventoriable", conn)
             dgv.Columns("Column3").HeaderText = "Cost"
+
         End If
         conn.Close()
         ConnectDatabase()
@@ -116,6 +117,8 @@ Public Class InventoryList
             frmItemsIssuance.dgv.Item(4, r).Value = frmItemsIssuance.txtQty.Text
             frmItemsIssuance.dgv.Item(5, r).Value = CDbl(dgv.CurrentRow.Cells(3).Value) * CDbl(frmItemsIssuance.txtQty.Text)
             frmItemsIssuance.dgv.Item(6, r).Value = dgv.CurrentRow.Cells(7).Value
+            Me.Close()
+        ElseIf mode = "Receiving" Then
             Me.Close()
         End If
     End Sub

@@ -98,7 +98,7 @@ Public Class frmPurchases
                     .Parameters.AddWithValue("@UPRICE", SqlDbType.Decimal).Value = dgv.Item(3, col).Value
                     .Parameters.AddWithValue("@AMOUNT", SqlDbType.VarChar).Value = dgv.Item(5, col).Value
                     .Parameters.AddWithValue("@USERID", SqlDbType.VarChar).Value = MainForm.LBLID.Text
-                    .Parameters.AddWithValue("@STATUS", SqlDbType.Int).Value = ""
+                    .Parameters.AddWithValue("@STATUS", SqlDbType.VarChar).Value = ""
                 End With
                 cmd.ExecuteNonQuery()
                 col = col + 1
@@ -133,8 +133,6 @@ Public Class frmPurchases
         If txtName.Text <> "" Then
             If lblFormMode.Text = "PURCHASE ORDER" Then
                     frmPO_paymentType.ShowDialog()
-                    'ElseIf lblFormMode.Text = "PURCHASE RECEIVING" Then
-                    '    RECORDPURCHASES()
                 End If
             Else
                 MsgBox("Please Enter Supplier Name ", MsgBoxStyle.Critical, "Error")

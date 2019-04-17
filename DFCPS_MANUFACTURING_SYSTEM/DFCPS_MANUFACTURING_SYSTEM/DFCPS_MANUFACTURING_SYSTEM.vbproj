@@ -416,6 +416,13 @@
     <Compile Include="Inventory Forms\frmInventorySystemMain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Inventory Forms\frmPurchasedReceiving.Designer.vb">
+      <DependentUpon>frmPurchasedReceiving.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory Forms\frmPurchasedReceiving.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="public_event_class.vb" />
     <Compile Include="Purchases\frmItemRequisition.Designer.vb">
       <DependentUpon>frmItemRequisition.vb</DependentUpon>
     </Compile>
@@ -1084,6 +1091,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Inventory Forms\frmInventorySystemMain.resx">
       <DependentUpon>frmInventorySystemMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory Forms\frmPurchasedReceiving.resx">
+      <DependentUpon>frmPurchasedReceiving.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\frmItemRequisition.resx">
       <DependentUpon>frmItemRequisition.vb</DependentUpon>

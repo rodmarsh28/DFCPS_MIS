@@ -117,4 +117,6 @@ Public Class inventory_class
             MsgBox(ex.Message)
         End Try
     End Sub
+
+   
 End Class
