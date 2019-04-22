@@ -94,6 +94,7 @@
             ElseIf btnAdd.Text = "Add Item" Then
                 inventoryClass.command = "Add"
             End If
+            inventoryClass.refNo = txtItemno.Text
             inventoryClass.itemNo = txtItemno.Text
             inventoryClass.itemdesc = txtItemdesc.Text
             inventoryClass.unitCost = txtUnitCost.Text
@@ -110,7 +111,7 @@
                 inventoryClass.memo = ""
                 inventoryClass.debit = CDbl(txtUnitCost.Text) * CDbl(txtBalQty.Text)
                 inventoryClass.credit = 0
-                inventoryClass.insert_AssetInvAcc_entry_class()
+                inventoryClass.insert_Acc_entry_class()
             End If
             saveAccountSettings()
             'disposeform()

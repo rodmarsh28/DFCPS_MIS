@@ -150,6 +150,7 @@
     </Compile>
     <Compile Include="Class\accEntry_class.vb" />
     <Compile Include="Class\Account_Class.vb" />
+    <Compile Include="Class\payable_class.vb" />
     <Compile Include="Inventory Forms\AddNewItem.Designer.vb">
       <DependentUpon>AddNewItem.vb</DependentUpon>
     </Compile>
@@ -420,6 +421,12 @@
       <DependentUpon>frmPurchasedReceiving.vb</DependentUpon>
     </Compile>
     <Compile Include="Inventory Forms\frmPurchasedReceiving.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventory Forms\list_for_selected accounts.Designer.vb">
+      <DependentUpon>list_for_selected accounts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory Forms\list_for_selected accounts.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="public_event_class.vb" />
@@ -1094,6 +1101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Inventory Forms\frmPurchasedReceiving.resx">
       <DependentUpon>frmPurchasedReceiving.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory Forms\list_for_selected accounts.resx">
+      <DependentUpon>list_for_selected accounts.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\frmItemRequisition.resx">
       <DependentUpon>frmItemRequisition.vb</DependentUpon>

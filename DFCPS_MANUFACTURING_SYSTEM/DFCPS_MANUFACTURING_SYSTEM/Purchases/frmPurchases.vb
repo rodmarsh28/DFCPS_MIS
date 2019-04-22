@@ -92,6 +92,7 @@ Public Class frmPurchases
                     .Parameters.AddWithValue("@COMMAND", SqlDbType.VarChar).Value = command
                     .Parameters.AddWithValue("@TRANSNO", SqlDbType.VarChar).Value = transNo.Text
                     .Parameters.AddWithValue("@REFNO", SqlDbType.VarChar).Value = txtRefNo.Text
+                    .Parameters.AddWithValue("@PAYMENT", SqlDbType.Date).Value = cmbPayment.Text
                     .Parameters.AddWithValue("@CARDID", SqlDbType.Date).Value = CardID
                     .Parameters.AddWithValue("@ITEMNO", SqlDbType.VarChar).Value = dgv.Item(0, col).Value
                     .Parameters.AddWithValue("@QTY", SqlDbType.VarChar).Value = dgv.Item(4, col).Value
@@ -104,21 +105,11 @@ Public Class frmPurchases
                 col = col + 1
             End While
             Dim req As New Puchase_Requisition_class
-            If chkPaynow.Checked = True Then
-
+            If cmbPayment.Text = "CASH" Then
                 req.transNo = transNo.Text
                 req.src = Form.ActiveForm.Text
                 req.totAmount = totAmount
                 req.insert_RFP()
-            Else
-                req.command = 0
-                req.transNo = transNo.Text
-                req.src = Form.ActiveForm.Text
-                req.paymentType = frmPO_paymentType.cmbPaymenType.Text
-                req.dueDate = Format(frmPO_paymentType.dtpDateCheque.Value, "yyyy/MM/dd")
-                req.paymentDesc = frmPO_paymentType.txtChequeNo.Text
-                req.totAmount = totAmount
-                req.insert_payables()
             End If
             MsgBox(lblFormMode.Text & " POSTED !", MsgBoxStyle.Information, "SUCCESS")
             frmPO_paymentType.Close()
@@ -131,8 +122,8 @@ Public Class frmPurchases
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BTNSAVE.Click
         If txtName.Text <> "" Then
-            If lblFormMode.Text = "PURCHASE ORDER" Then
-                    frmPO_paymentType.ShowDialog()
+                If MsgBox("Are You Sure ?", MsgBoxStyle.YesNo, "Warning") = MsgBoxResult.Yes Then
+                RECORDPURCHASES()
                 End If
             Else
                 MsgBox("Please Enter Supplier Name ", MsgBoxStyle.Critical, "Error")
@@ -173,6 +164,7 @@ Public Class frmPurchases
         generateNo()
         totAmount = 0
         lblTotal.Text = "Php " & Format(totAmount, "N")
+        cmbPayment.SelectedIndex = 0
     End Sub
 
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
@@ -235,6 +227,7 @@ Public Class frmPurchases
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
         Try
             frmGetRequisitionItemList.Close()
+            frmGetRequisitionItemList.viewList_itemRequisition()
             frmGetRequisitionItemList.Show()
         Catch ex As Exception
 

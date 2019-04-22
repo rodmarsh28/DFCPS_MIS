@@ -63,12 +63,13 @@ Public Class inventory_class
         End Try
     End Sub
 
-    Public Sub insert_AssetInvAcc_entry_class()
+    Public Sub insert_Acc_entry_class()
         Try
-            Dim cmd As New SqlCommand("insert_AssetInvAcc_entry", conn)
+            Dim cmd As New SqlCommand("insert_Acc_entry", conn)
             checkConn()
             With cmd
                 .CommandType = CommandType.StoredProcedure
+                .Parameters.AddWithValue("@refNo", SqlDbType.VarChar).Value = refNo
                 .Parameters.AddWithValue("@src", SqlDbType.VarChar).Value = Form.ActiveForm.Text
                 .Parameters.AddWithValue("@accNo", SqlDbType.VarChar).Value = accAsset
                 .Parameters.AddWithValue("@memo", SqlDbType.VarChar).Value = memo

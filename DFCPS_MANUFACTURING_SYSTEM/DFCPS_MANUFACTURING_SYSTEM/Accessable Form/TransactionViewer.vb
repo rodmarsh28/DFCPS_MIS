@@ -5,15 +5,17 @@ Public Class TransactionViewer
     Public MODE As String
     Dim cardID As String
     Dim cardName As String
+    Dim payment As String
     Sub get_info_purchaseOrder()
         Try
             checkConn()
-            Dim cmd As New SqlCommand("select distinct tblCardsProfile.cardID,tblCardsProfile.cardName from tblPurchaseOrder inner join tblCardsProfile on tblPurchaseOrder.cardid = tblCardsProfile.cardid where purchaseOrderNo = '" & LV.SelectedItems(0).SubItems(1).Text & "'", conn)
+            Dim cmd As New SqlCommand("select distinct tblCardsProfile.cardID,tblCardsProfile.cardName,PAYMENT from tblPurchaseOrder inner join tblCardsProfile on tblPurchaseOrder.cardid = tblCardsProfile.cardid where purchaseOrderNo = '" & LV.SelectedItems(0).SubItems(1).Text & "'", conn)
             Dim dr As SqlDataReader
             dr = cmd.ExecuteReader
             If dr.Read Then
                 cardID = dr.Item(0)
                 cardName = dr.Item(1)
+                payment = dr.Item(2)
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -146,6 +148,11 @@ Public Class TransactionViewer
         frmPurchasedReceiving.txtRefNo.Text = LV.SelectedItems(0).SubItems(1).Text
         frmPurchasedReceiving.cardID = cardID
         frmPurchasedReceiving.txtName.Text = cardName
+        If payment = "CREDIT" Then
+            frmPurchasedReceiving.cmbPayment.SelectedIndex = 0
+        ElseIf payment = "CASH" Then
+            frmPurchasedReceiving.cmbPayment.SelectedIndex = 1
+        End If
         frmPurchasedReceiving.ShowDialog()
     End Sub
 End Class

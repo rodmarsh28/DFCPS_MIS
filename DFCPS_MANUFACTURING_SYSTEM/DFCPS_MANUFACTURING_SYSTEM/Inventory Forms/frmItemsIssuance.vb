@@ -32,7 +32,6 @@
     Sub save()
         Dim inventoryClass As New inventory_class
         inventoryClass.refNo = txtIssuanceNo.Text
-        inventoryClass.src = Form.ActiveForm.Text
         inventoryClass.IssuanceNo = txtIssuanceNo.Text
         inventoryClass.IssuanceDate = Format(Now, "MM/dd/yyyy")
         inventoryClass.totalItemCount = dgv.Rows.Count
@@ -53,7 +52,7 @@
             inventoryClass.accAsset = dgv.Item(5, col).Value
             inventoryClass.debit = inventoryClass.unitCost
             inventoryClass.credit = "0"
-            inventoryClass.insert_AssetInvAcc_entry_class()
+            inventoryClass.insert_Acc_entry_class()
         End While
     End Sub
 

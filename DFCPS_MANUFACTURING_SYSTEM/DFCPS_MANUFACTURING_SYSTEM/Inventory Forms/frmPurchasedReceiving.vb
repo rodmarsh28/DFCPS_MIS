@@ -5,6 +5,9 @@ Public Class frmPurchasedReceiving
     Public invoiceNo As String
     Private WithEvents p_event As New public_event_class
     Public totAmount As Double
+    Dim row1 As Integer
+    Dim col As Integer
+    Dim clearingAccount As String
 
     Private Sub VariableChanged(ByVal NewValue As Integer) Handles p_event.VariableChanged
     End Sub
@@ -37,9 +40,7 @@ Public Class frmPurchasedReceiving
     End Sub
 
     Private Sub frmPurchasedReceiving_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
-        If MsgBox("Are you sure ?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
             Me.Dispose()
-        End If
     End Sub
 
     Private Sub frmPurchasedReceiving_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
@@ -79,8 +80,6 @@ Public Class frmPurchasedReceiving
     Sub RECEIVEDITEMS()
         Try
             Dim command As Integer
-            Dim row1 As Integer
-            Dim col As Integer
             col = 0
             row1 = dgv.RowCount
             While col < row1
@@ -97,7 +96,7 @@ Public Class frmPurchasedReceiving
                     .Parameters.AddWithValue("@COMMAND", SqlDbType.VarChar).Value = command
                     .Parameters.AddWithValue("@TRANSNO", SqlDbType.VarChar).Value = transNo.Text
                     .Parameters.AddWithValue("@REFNO", SqlDbType.VarChar).Value = txtRefNo.Text
-                    .Parameters.AddWithValue("@INVOICENO", SqlDbType.VarChar).Value = txtRefNo.Text
+                    .Parameters.AddWithValue("@INVOICENO", SqlDbType.VarChar).Value = txtInvoice.Text
                     .Parameters.AddWithValue("@CARDID", SqlDbType.Date).Value = cardID
                     .Parameters.AddWithValue("@ITEMNO", SqlDbType.VarChar).Value = dgv.Item(0, col).Value
                     .Parameters.AddWithValue("@QTY", SqlDbType.VarChar).Value = dgv.Item(4, col).Value
@@ -107,14 +106,53 @@ Public Class frmPurchasedReceiving
                     .Parameters.AddWithValue("@STATUS", SqlDbType.VarChar).Value = ""
                 End With
                 cmd.ExecuteNonQuery()
+                account_entry()
+                ADD_INVENTORY()
                 col = col + 1
             End While
+            If lblClearingAcc.Text <> "" Then
+                Dim ac As New accEntry_class
+                ac.refno = txtRefNo.Text
+                ac.account = txtClearingAcc.Text
+                ac.memo = txtMemo.Text
+                ac.debit = 0
+                ac.credit = totAmount
+                ac.insert_Acc_entry_class()
+            End If
             Dim req As New Puchase_Requisition_class
             MsgBox(lblFormMode.Text & " POSTED !", MsgBoxStyle.Information, "SUCCESS")
             Me.Close()
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+    End Sub
+    Sub account_entry()
+        Dim ac As New accEntry_class
+        ac.refno = txtRefNo.Text
+        ac.account = dgv.Item(6, col).Value
+        ac.memo = txtMemo.Text
+        ac.debit = dgv.Item(5, col).Value
+        ac.credit = 0
+        ac.insert_Acc_entry_class()
+    End Sub
+    Sub add_payables()
+        Dim payable As New payable_class
+        payable.command = 0
+        payable.transNo = transNo.Text
+        payable.src = Form.ActiveForm.Text
+        payable.paymentType = cmbPayment.Text
+        payable.dueDate = Format(frmPO_paymentType.dtpDateCheque.Value, "yyyy/MM/dd")
+        payable.paymentDesc = frmPO_paymentType.txtChequeNo.Text
+        payable.totAmount = totAmount
+        payable.insert_update_payables()
+    End Sub
+    Sub ADD_INVENTORY()
+        Dim inventoryClass As New inventory_class
+        inventoryClass.refNo = txtRefNo.Text
+        inventoryClass.itemNo = dgv.Item(0, col).Value
+        inventoryClass.unitCost = dgv.Item(3, col).Value
+        inventoryClass.qty = dgv.Item(4, col).Value
+        inventoryClass.insert_invItem_transaction()
     End Sub
     Private Sub lblTotal_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles lblTotal.TextChanged
     End Sub
@@ -162,9 +200,26 @@ Public Class frmPurchasedReceiving
 
     Private Sub BTNSAVE_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BTNSAVE.Click
         If txtName.Text <> "" Or invoiceNo <> "" Then
-            RECEIVEDITEMS()
+            If MsgBox("Are you sure ?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                RECEIVEDITEMS()
+            End If
         Else
             MsgBox("Please fillup all information ", MsgBoxStyle.Critical, "Error")
         End If
+    End Sub
+
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        Try
+            frmGetRequisitionItemList.Close()
+            frmGetRequisitionItemList.viewList_purchaseOrder()
+            frmGetRequisitionItemList.Show()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        list_for_selected_accounts.get_clearing_accounts()
+        list_for_selected_accounts.ShowDialog()
     End Sub
 End Class

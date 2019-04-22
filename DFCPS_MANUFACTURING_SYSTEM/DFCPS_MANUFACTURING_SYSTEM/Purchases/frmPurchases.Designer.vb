@@ -48,7 +48,8 @@ Partial Class frmPurchases
         Me.lblTotal = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.chkPaynow = New System.Windows.Forms.CheckBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.cmbPayment = New System.Windows.Forms.ComboBox()
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -58,6 +59,9 @@ Partial Class frmPurchases
         Me.dgv.AllowUserToAddRows = False
         Me.dgv.AllowUserToDeleteRows = False
         Me.dgv.AllowUserToResizeRows = False
+        Me.dgv.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgv.BackgroundColor = System.Drawing.Color.White
         Me.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgv.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column8, Me.Column2, Me.Column4, Me.Column5, Me.Column3})
@@ -67,7 +71,7 @@ Partial Class frmPurchases
         Me.dgv.ReadOnly = True
         Me.dgv.RowHeadersVisible = False
         Me.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.dgv.Size = New System.Drawing.Size(784, 304)
+        Me.dgv.Size = New System.Drawing.Size(784, 361)
         Me.dgv.TabIndex = 8
         '
         'Column1
@@ -112,10 +116,11 @@ Partial Class frmPurchases
         '
         'Button2
         '
+        Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button2.BackColor = System.Drawing.Color.DodgerBlue
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(951, 391)
+        Me.Button2.Location = New System.Drawing.Point(951, 449)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(123, 57)
         Me.Button2.TabIndex = 51
@@ -124,10 +129,11 @@ Partial Class frmPurchases
         '
         'BTNSAVE
         '
+        Me.BTNSAVE.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BTNSAVE.BackColor = System.Drawing.Color.DodgerBlue
         Me.BTNSAVE.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BTNSAVE.ForeColor = System.Drawing.Color.White
-        Me.BTNSAVE.Location = New System.Drawing.Point(824, 391)
+        Me.BTNSAVE.Location = New System.Drawing.Point(824, 449)
         Me.BTNSAVE.Name = "BTNSAVE"
         Me.BTNSAVE.Size = New System.Drawing.Size(121, 57)
         Me.BTNSAVE.TabIndex = 50
@@ -136,9 +142,10 @@ Partial Class frmPurchases
         '
         'GroupBox1
         '
+        Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.BackColor = System.Drawing.Color.LightSkyBlue
         Me.GroupBox1.Controls.Add(Me.lblFormMode)
-        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(1103, 79)
@@ -147,12 +154,13 @@ Partial Class frmPurchases
         '
         'lblFormMode
         '
-        Me.lblFormMode.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblFormMode.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblFormMode.BackColor = System.Drawing.Color.Black
         Me.lblFormMode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblFormMode.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFormMode.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.lblFormMode.Location = New System.Drawing.Point(6, 11)
+        Me.lblFormMode.Location = New System.Drawing.Point(6, 9)
         Me.lblFormMode.Name = "lblFormMode"
         Me.lblFormMode.Size = New System.Drawing.Size(1091, 63)
         Me.lblFormMode.TabIndex = 77
@@ -161,9 +169,10 @@ Partial Class frmPurchases
         '
         'Label2
         '
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(817, 146)
+        Me.Label2.Location = New System.Drawing.Point(817, 150)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(107, 13)
         Me.Label2.TabIndex = 68
@@ -171,16 +180,18 @@ Partial Class frmPurchases
         '
         'txtRefNo
         '
+        Me.txtRefNo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtRefNo.Enabled = False
-        Me.txtRefNo.Location = New System.Drawing.Point(813, 162)
+        Me.txtRefNo.Location = New System.Drawing.Point(813, 166)
         Me.txtRefNo.Name = "txtRefNo"
         Me.txtRefNo.Size = New System.Drawing.Size(213, 20)
         Me.txtRefNo.TabIndex = 67
         '
         'Button3
         '
+        Me.Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(1032, 161)
+        Me.Button3.Location = New System.Drawing.Point(1032, 165)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(46, 21)
         Me.Button3.TabIndex = 66
@@ -189,8 +200,9 @@ Partial Class frmPurchases
         '
         'btnSearchCustomer
         '
+        Me.btnSearchCustomer.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSearchCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSearchCustomer.Location = New System.Drawing.Point(1032, 215)
+        Me.btnSearchCustomer.Location = New System.Drawing.Point(1032, 219)
         Me.btnSearchCustomer.Name = "btnSearchCustomer"
         Me.btnSearchCustomer.Size = New System.Drawing.Size(46, 21)
         Me.btnSearchCustomer.TabIndex = 65
@@ -199,9 +211,10 @@ Partial Class frmPurchases
         '
         'Label1
         '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(818, 87)
+        Me.Label1.Location = New System.Drawing.Point(818, 91)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(29, 13)
         Me.Label1.TabIndex = 61
@@ -209,27 +222,30 @@ Partial Class frmPurchases
         '
         'transNo
         '
+        Me.transNo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.transNo.Enabled = False
         Me.transNo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.transNo.ForeColor = System.Drawing.Color.Maroon
-        Me.transNo.Location = New System.Drawing.Point(814, 103)
+        Me.transNo.Location = New System.Drawing.Point(814, 107)
         Me.transNo.Name = "transNo"
         Me.transNo.Size = New System.Drawing.Size(146, 26)
         Me.transNo.TabIndex = 60
         '
         'txtName
         '
+        Me.txtName.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtName.Enabled = False
-        Me.txtName.Location = New System.Drawing.Point(814, 215)
+        Me.txtName.Location = New System.Drawing.Point(814, 219)
         Me.txtName.Name = "txtName"
         Me.txtName.Size = New System.Drawing.Size(212, 20)
         Me.txtName.TabIndex = 1
         '
         'Label3
         '
+        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(817, 199)
+        Me.Label3.Location = New System.Drawing.Point(817, 203)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(68, 13)
         Me.Label3.TabIndex = 64
@@ -237,9 +253,10 @@ Partial Class frmPurchases
         '
         'btnSearch
         '
+        Me.btnSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.btnSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSearch.Location = New System.Drawing.Point(703, 406)
+        Me.btnSearch.Location = New System.Drawing.Point(703, 463)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(93, 35)
         Me.btnSearch.TabIndex = 80
@@ -248,19 +265,22 @@ Partial Class frmPurchases
         '
         'txtQty
         '
+        Me.txtQty.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtQty.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtQty.Location = New System.Drawing.Point(75, 409)
+        Me.txtQty.Location = New System.Drawing.Point(75, 466)
         Me.txtQty.Name = "txtQty"
         Me.txtQty.Size = New System.Drawing.Size(622, 31)
         Me.txtQty.TabIndex = 79
         '
         'lblSearch
         '
+        Me.lblSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblSearch.AutoSize = True
         Me.lblSearch.BackColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.lblSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSearch.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.lblSearch.Location = New System.Drawing.Point(12, 416)
+        Me.lblSearch.Location = New System.Drawing.Point(12, 473)
         Me.lblSearch.Name = "lblSearch"
         Me.lblSearch.Size = New System.Drawing.Size(49, 20)
         Me.lblSearch.TabIndex = 81
@@ -268,10 +288,11 @@ Partial Class frmPurchases
         '
         'lblTotal
         '
+        Me.lblTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblTotal.BackColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.lblTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotal.ForeColor = System.Drawing.Color.Lime
-        Me.lblTotal.Location = New System.Drawing.Point(818, 271)
+        Me.lblTotal.Location = New System.Drawing.Point(818, 331)
         Me.lblTotal.Name = "lblTotal"
         Me.lblTotal.Size = New System.Drawing.Size(260, 85)
         Me.lblTotal.TabIndex = 82
@@ -280,9 +301,10 @@ Partial Class frmPurchases
         '
         'Label4
         '
+        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(822, 249)
+        Me.Label4.Location = New System.Drawing.Point(822, 309)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(49, 20)
         Me.Label4.TabIndex = 83
@@ -293,24 +315,36 @@ Partial Class frmPurchases
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip1.Size = New System.Drawing.Size(61, 4)
         '
-        'chkPaynow
+        'Label5
         '
-        Me.chkPaynow.AutoSize = True
-        Me.chkPaynow.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkPaynow.Location = New System.Drawing.Point(1007, 362)
-        Me.chkPaynow.Name = "chkPaynow"
-        Me.chkPaynow.Size = New System.Drawing.Size(80, 17)
-        Me.chkPaynow.TabIndex = 84
-        Me.chkPaynow.Text = "Pay Now "
-        Me.chkPaynow.UseVisualStyleBackColor = True
+        Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(817, 253)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(66, 13)
+        Me.Label5.TabIndex = 86
+        Me.Label5.Text = "PAYMENT"
+        '
+        'cmbPayment
+        '
+        Me.cmbPayment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cmbPayment.FormattingEnabled = True
+        Me.cmbPayment.Items.AddRange(New Object() {"CREDIT", "CASH"})
+        Me.cmbPayment.Location = New System.Drawing.Point(813, 272)
+        Me.cmbPayment.Name = "cmbPayment"
+        Me.cmbPayment.Size = New System.Drawing.Size(265, 21)
+        Me.cmbPayment.TabIndex = 87
         '
         'frmPurchases
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.ClientSize = New System.Drawing.Size(1103, 463)
-        Me.Controls.Add(Me.chkPaynow)
+        Me.ClientSize = New System.Drawing.Size(1103, 536)
+        Me.Controls.Add(Me.cmbPayment)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.lblTotal)
         Me.Controls.Add(Me.Label1)
@@ -329,8 +363,6 @@ Partial Class frmPurchases
         Me.Controls.Add(Me.BTNSAVE)
         Me.Controls.Add(Me.dgv)
         Me.KeyPreview = True
-        Me.MaximizeBox = False
-        Me.MinimizeBox = False
         Me.Name = "frmPurchases"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Purchases Order"
@@ -365,5 +397,6 @@ Partial Class frmPurchases
     Friend WithEvents lblTotal As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
-    Friend WithEvents chkPaynow As System.Windows.Forms.CheckBox
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents cmbPayment As System.Windows.Forms.ComboBox
 End Class
