@@ -157,6 +157,25 @@ Public Class frmPurchasedReceiving
         inventoryClass.qty = dgv.Item(4, col).Value
         inventoryClass.insert_invItem_transaction()
     End Sub
+    Sub generateAccountEntry()
+        Dim ac As New Account_Class
+        ac.searchValue = dgv.CurrentRow.Cells(0).Value
+        ac.get_itemAccountInfo()
+        For Each row As DataGridViewRow In dgvAccEntry.Rows
+            Dim hasrows As Integer = 0
+            If row.Cells(0).Value = ac.assetAcc Then
+                row.Cells(4).Value = CDbl(dgv.CurrentRow.Cells(5).Value)
+                hasrows = +1
+            End If
+            If hasrows < 1 Then
+                Dim r As Integer = dgvAccEntry.Rows.Count
+                dgvAccEntry.Rows.Add()
+                dgv.Item(0, r).Value = ac.assetAcc
+                dgv.Item(2, r).Value = CDbl(dgv.CurrentRow.Cells(5).Value)
+                dgv.Item(3, r).Value = "0.00"
+            End If
+        Next
+    End Sub
     Private Sub lblTotal_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles lblTotal.TextChanged
     End Sub
 
@@ -183,6 +202,7 @@ Public Class frmPurchasedReceiving
         Catch ex As Exception
         End Try
     End Sub
+
 
     Private Sub dgv_CellValueChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgv.CellValueChanged
         Try

@@ -7,6 +7,14 @@ Public Class Account_Class
     Public subheader As String
     Public dept As String
     Public accDesc As String
+
+    Public AccName As String
+    Public inventorable As Boolean
+    Public buyable As Boolean
+    Public sellable As Boolean
+    Public costAcc As String
+    Public incomeAcc As String
+    Public assetAcc As String
     Public Sub get_accountInfo()
         Try
             checkConn()
@@ -33,6 +41,50 @@ Public Class Account_Class
             MsgBox(ex.Message)
         Finally
 
+        End Try
+    End Sub
+    Public Sub get_itemAccountInfo()
+        Try
+            checkConn()
+            Dim cmd As New SqlCommand("select buyable,sellable,inventorable,costofsalesAcc,incomeAcc,assetAcc from tblInvtry where itemcode = '" & searchValue & "'", conn)
+            Dim dr As SqlDataReader = cmd.ExecuteReader
+            If dr.Read Then
+                If dr.Item(0) = 1 Then
+                    buyable = True
+                Else
+                    buyable = False
+                End If
+                If dr.Item(1) = 1 Then
+                    sellable = True
+                Else
+                    sellable = False
+                End If
+                If dr.Item(2) = 1 Then
+                    inventorable = True
+                Else
+                    inventorable = False
+                End If
+                costAcc = dr.Item(3)
+                incomeAcc = dr.Item(4)
+                assetAcc = dr.Item(5)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        Finally
+
+        End Try
+    End Sub
+    Public Sub getaccountName()
+        Try
+            checkConn()
+            Dim cmd As New SqlCommand("select accountName from tblCOA where accNo = '" & searchValue & "'", conn)
+            Dim dr As SqlDataReader = cmd.ExecuteReader
+            If dr.Read Then
+                accName = dr.Item(0)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        Finally
         End Try
     End Sub
 End Class

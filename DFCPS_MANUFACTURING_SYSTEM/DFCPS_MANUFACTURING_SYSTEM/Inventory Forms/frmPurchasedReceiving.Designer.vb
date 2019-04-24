@@ -44,6 +44,13 @@ Partial Class frmPurchasedReceiving
         Me.Button2 = New System.Windows.Forms.Button()
         Me.BTNSAVE = New System.Windows.Forms.Button()
         Me.dgv = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.txtInvoice = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.txtMemo = New System.Windows.Forms.TextBox()
@@ -52,21 +59,14 @@ Partial Class frmPurchasedReceiving
         Me.Label8 = New System.Windows.Forms.Label()
         Me.LBLDUEDATE = New System.Windows.Forms.Label()
         Me.DTPDUEDATE = New System.Windows.Forms.DateTimePicker()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.dgvAccEntry = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvAccEntry, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label4
@@ -279,6 +279,46 @@ Partial Class frmPurchasedReceiving
         Me.dgv.Size = New System.Drawing.Size(784, 329)
         Me.dgv.TabIndex = 86
         '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Item No."
+        Me.Column1.Name = "Column1"
+        '
+        'Column8
+        '
+        Me.Column8.HeaderText = "Descrition"
+        Me.Column8.Name = "Column8"
+        Me.Column8.Width = 300
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "Unit"
+        Me.Column2.Name = "Column2"
+        Me.Column2.Width = 80
+        '
+        'Column4
+        '
+        Me.Column4.HeaderText = "Unit Price"
+        Me.Column4.Name = "Column4"
+        Me.Column4.Width = 80
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "Qty"
+        Me.Column5.Name = "Column5"
+        Me.Column5.Width = 80
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Amount"
+        Me.Column3.Name = "Column3"
+        '
+        'Column7
+        '
+        Me.Column7.HeaderText = "ACCOUNT"
+        Me.Column7.Name = "Column7"
+        Me.Column7.Visible = False
+        '
         'txtInvoice
         '
         Me.txtInvoice.Location = New System.Drawing.Point(814, 244)
@@ -352,12 +392,12 @@ Partial Class frmPurchasedReceiving
         Me.DTPDUEDATE.Size = New System.Drawing.Size(127, 20)
         Me.DTPDUEDATE.TabIndex = 119
         '
-        'DataGridView1
+        'dgvAccEntry
         '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.AllowUserToResizeRows = False
-        Me.DataGridView1.BackgroundColor = System.Drawing.Color.White
+        Me.dgvAccEntry.AllowUserToAddRows = False
+        Me.dgvAccEntry.AllowUserToDeleteRows = False
+        Me.dgvAccEntry.AllowUserToResizeRows = False
+        Me.dgvAccEntry.BackgroundColor = System.Drawing.Color.White
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -365,9 +405,9 @@ Partial Class frmPurchasedReceiving
         DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4})
+        Me.dgvAccEntry.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        Me.dgvAccEntry.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvAccEntry.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4})
         DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -375,15 +415,15 @@ Partial Class frmPurchasedReceiving
         DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle4
-        Me.DataGridView1.Location = New System.Drawing.Point(12, 426)
-        Me.DataGridView1.MultiSelect = False
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(784, 245)
-        Me.DataGridView1.TabIndex = 120
+        Me.dgvAccEntry.DefaultCellStyle = DataGridViewCellStyle4
+        Me.dgvAccEntry.Location = New System.Drawing.Point(12, 426)
+        Me.dgvAccEntry.MultiSelect = False
+        Me.dgvAccEntry.Name = "dgvAccEntry"
+        Me.dgvAccEntry.ReadOnly = True
+        Me.dgvAccEntry.RowHeadersVisible = False
+        Me.dgvAccEntry.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.dgvAccEntry.Size = New System.Drawing.Size(784, 245)
+        Me.dgvAccEntry.TabIndex = 120
         '
         'DataGridViewTextBoxColumn1
         '
@@ -413,53 +453,13 @@ Partial Class frmPurchasedReceiving
         Me.DataGridViewTextBoxColumn4.ReadOnly = True
         Me.DataGridViewTextBoxColumn4.Width = 120
         '
-        'Column1
-        '
-        Me.Column1.HeaderText = "Item No."
-        Me.Column1.Name = "Column1"
-        '
-        'Column8
-        '
-        Me.Column8.HeaderText = "Descrition"
-        Me.Column8.Name = "Column8"
-        Me.Column8.Width = 300
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "Unit"
-        Me.Column2.Name = "Column2"
-        Me.Column2.Width = 80
-        '
-        'Column4
-        '
-        Me.Column4.HeaderText = "Unit Price"
-        Me.Column4.Name = "Column4"
-        Me.Column4.Width = 80
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "Qty"
-        Me.Column5.Name = "Column5"
-        Me.Column5.Width = 80
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "Amount"
-        Me.Column3.Name = "Column3"
-        '
-        'Column7
-        '
-        Me.Column7.HeaderText = "ACCOUNT"
-        Me.Column7.Name = "Column7"
-        Me.Column7.Visible = False
-        '
         'frmPurchasedReceiving
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1100, 689)
-        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.dgvAccEntry)
         Me.Controls.Add(Me.DTPDUEDATE)
         Me.Controls.Add(Me.LBLDUEDATE)
         Me.Controls.Add(Me.Label8)
@@ -491,7 +491,7 @@ Partial Class frmPurchasedReceiving
         Me.Text = "Purchased Receiving"
         Me.GroupBox1.ResumeLayout(False)
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvAccEntry, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -522,7 +522,7 @@ Partial Class frmPurchasedReceiving
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents LBLDUEDATE As System.Windows.Forms.Label
     Friend WithEvents DTPDUEDATE As System.Windows.Forms.DateTimePicker
-    Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
+    Friend WithEvents dgvAccEntry As System.Windows.Forms.DataGridView
     Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
