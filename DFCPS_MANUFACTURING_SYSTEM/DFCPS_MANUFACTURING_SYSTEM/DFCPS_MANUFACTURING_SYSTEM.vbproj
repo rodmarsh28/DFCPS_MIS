@@ -150,6 +150,7 @@
     </Compile>
     <Compile Include="Class\accEntry_class.vb" />
     <Compile Include="Class\Account_Class.vb" />
+    <Compile Include="Class\autocomplete_class.vb" />
     <Compile Include="Class\payable_class.vb" />
     <Compile Include="Inventory Forms\AddNewItem.Designer.vb">
       <DependentUpon>AddNewItem.vb</DependentUpon>

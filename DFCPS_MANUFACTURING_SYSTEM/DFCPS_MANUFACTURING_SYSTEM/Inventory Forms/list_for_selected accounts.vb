@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class list_for_selected_accounts
+    Public clickedItem As Boolean
     Sub get_clearing_accounts()
         Dim dt As New DataTable
         Dim rowindex As Integer
@@ -30,12 +31,17 @@ Public Class list_for_selected_accounts
             Next
             LV.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent)
             LV.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
-            If rowIndex < LV.Items.Count Then
-                LV.Items(rowIndex).Selected = True
+            If rowindex < LV.Items.Count Then
+                LV.Items(rowindex).Selected = True
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
         Finally
         End Try
+    End Sub
+
+    Private Sub LV_MouseDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles LV.MouseDoubleClick
+        clickedItem = True
+        Me.Close()
     End Sub
 End Class

@@ -9,6 +9,7 @@ Public Class frmPurchasedReceiving
     Dim col As Integer
     Dim clearingAccount As String
     Dim allitemsreceived As Integer
+    Dim lastvalueEntered As String
 
     Private Sub VariableChanged(ByVal NewValue As Integer) Handles p_event.VariableChanged
     End Sub
@@ -45,23 +46,23 @@ Public Class frmPurchasedReceiving
     End Sub
 
     Private Sub frmPurchasedReceiving_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            txtQty.Focus()
-        End If
-
+       
     End Sub
 
     Private Sub frmPurchasedReceiving_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         generateNo()
         totAmount = 0.0
         lblTotal.Text = "Php " & Format(CDbl(totAmount), "N")
+        Dim c As Integer = 0
+        While c <= 10
+            dgv.Rows.Add()
+            c += 1
+        End While
 
     End Sub
 
-    Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
-        If txtQty.Text = "" Then
-            txtQty.Text = "1"
-        End If
+    Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        
         InventoryList.mode = "Receiving"
         InventoryList.ShowDialog()
         If InventoryList.clickedItem = True Then
@@ -71,9 +72,7 @@ Public Class frmPurchasedReceiving
             dgv.Item(1, r).Value = InventoryList.dgv.CurrentRow.Cells(1).Value
             dgv.Item(2, r).Value = InventoryList.dgv.CurrentRow.Cells(2).Value
             dgv.Item(3, r).Value = InventoryList.dgv.CurrentRow.Cells(3).Value
-            dgv.Item(4, r).Value = txtQty.Text
             InventoryList.clickedItem = False
-            dgv.Item(5, r).Value = Format(CDbl(InventoryList.dgv.CurrentRow.Cells(3).Value) * CDbl(txtQty.Text), "N")
             dgv.Item(6, r).Value = InventoryList.dgv.CurrentRow.Cells(7).Value
             lblTotal.Text = "Php " & Format(totAmount, "N")
         End If
@@ -161,28 +160,35 @@ Public Class frmPurchasedReceiving
         Dim ac As New Account_Class
         ac.searchValue = dgv.CurrentRow.Cells(0).Value
         ac.get_itemAccountInfo()
-        For Each row As DataGridViewRow In dgvAccEntry.Rows
-            Dim hasrows As Integer = 0
-            If row.Cells(0).Value = ac.assetAcc Then
-                row.Cells(4).Value = CDbl(dgv.CurrentRow.Cells(5).Value)
-                hasrows = +1
-            End If
-            If hasrows < 1 Then
-                Dim r As Integer = dgvAccEntry.Rows.Count
-                dgvAccEntry.Rows.Add()
-                dgv.Item(0, r).Value = ac.assetAcc
-                dgv.Item(2, r).Value = CDbl(dgv.CurrentRow.Cells(5).Value)
-                dgv.Item(3, r).Value = "0.00"
+        Dim hasrows As Integer = 0
+        Dim totalAmount As Double
+        For Each row As DataGridViewRow In dgv.Rows
+            If row.Cells(6).Value = dgv.CurrentRow.Cells(6).Value Then
+                totalAmount = CDbl(totalAmount) + CDbl(row.Cells(5).Value)
             End If
         Next
+        For Each row As DataGridViewRow In dgvAccEntry.Rows
+            If row.Cells(0).Value = ac.assetAcc Then
+                row.Cells(2).Value = totalAmount
+                hasrows = +1
+            End If
+          
+        Next
+        If hasrows < 1 Then
+            Dim r As Integer = dgvAccEntry.Rows.Count
+            dgvAccEntry.Rows.Add()
+            dgvAccEntry.Item(0, r).Value = ac.assetAcc
+            dgvAccEntry.Item(2, r).Value = dgv.CurrentRow.Cells(5).Value
+            dgvAccEntry.Item(3, r).Value = "0.00"
+        End If
     End Sub
     Private Sub lblTotal_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles lblTotal.TextChanged
     End Sub
 
-    Private Sub txtQty_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtQty.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            btnSearch.PerformClick()
-        End If
+    Private Sub txtQty_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs)
+        'If e.KeyCode = Keys.Enter Then
+        '    btnSearch.PerformClick()
+        'End If
 
     End Sub
     Sub sumofAmount()
@@ -192,21 +198,52 @@ Public Class frmPurchasedReceiving
         Next
         lblTotal.Text = "Php " & Format(totAmount, "N")
     End Sub
+    Sub sumofAmountPerAccount()
+        totAmount = 0
+      
+    End Sub
 
     Private Sub dgv_CellMouseDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dgv.CellMouseDoubleClick
         Try
             Dim sC As Integer = dgv.CurrentCell.ColumnIndex
             If sC <= 0 Then
-                frmAccountList.ShowDialog()
+                InventoryList.mode = "Receiving"
+                InventoryList.ShowDialog()
+                If InventoryList.clickedItem = True Then
+                    Dim r As Integer = dgv.CurrentRow.Index
+                    dgv.Item(0, r).Value = InventoryList.dgv.CurrentRow.Cells(0).Value
+                    dgv.Item(1, r).Value = InventoryList.dgv.CurrentRow.Cells(1).Value
+                    dgv.Item(2, r).Value = InventoryList.dgv.CurrentRow.Cells(2).Value
+                    dgv.Item(3, r).Value = InventoryList.dgv.CurrentRow.Cells(3).Value
+                    dgv.Item(4, r).Value = "1"
+                    dgv.Item(5, r).Value = Format(InventoryList.dgv.CurrentRow.Cells(3).Value)
+                    dgv.Item(6, r).Value = InventoryList.dgv.CurrentRow.Cells(7).Value
+                    lblTotal.Text = "Php " & Format(totAmount, "N")
+                    InventoryList.clickedItem = False
+                End If
             End If
         Catch ex As Exception
         End Try
     End Sub
 
+    Private Sub dgv_CellMouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dgv.CellMouseDown
+
+    End Sub
+
 
     Private Sub dgv_CellValueChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgv.CellValueChanged
         Try
-            dgv.CurrentRow.Cells(5).Value = Format(CDbl(dgv.CurrentRow.Cells(3).Value) * CDbl(dgv.CurrentRow.Cells(4).Value), "N")
+            If dgv.CurrentCell.ColumnIndex = 0 Then
+                Dim ac As New Account_Class
+                ac.searchValue = dgv.CurrentRow.Cells(0).Value
+                ac.get_itemAccountInfo()
+                dgv.Rows(dgv.CurrentRow.Index).Cells(1).Value = ac.itemdesc
+                dgv.Rows(dgv.CurrentRow.Index).Cells(2).Value = ac.unit
+                dgv.Rows(dgv.CurrentRow.Index).Cells(3).Value = Format(ac.unitprice, "N")
+                dgv.Rows(dgv.CurrentRow.Index).Cells(4).Value = Format(ac.qty, "N0")
+                dgv.Rows(dgv.CurrentRow.Index).Cells(6).Value = ac.assetAcc
+            End If
+            dgv.Rows(dgv.CurrentRow.Index).Cells(5).Value = Format(CDbl(dgv.CurrentRow.Cells(3).Value) * CDbl(dgv.CurrentRow.Cells(4).Value), "N")
             sumofAmount()
         Catch ex As Exception
         End Try
@@ -248,5 +285,100 @@ Public Class frmPurchasedReceiving
     Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs)
         list_for_selected_accounts.get_clearing_accounts()
         list_for_selected_accounts.ShowDialog()
+    End Sub
+
+    Private Sub dgvAccEntry_CellMouseDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dgvAccEntry.CellMouseDoubleClick
+        Try
+            Dim sC As Integer = dgvAccEntry.CurrentCell.ColumnIndex
+            If sC <= 0 Then
+                frmAccountList.ShowDialog()
+                Dim r As Integer = frmAccountList.dgv.Rows.Count
+                dgvAccEntry.Rows.Add()
+                dgvAccEntry.Item(0, r).value = frmAccountList.dgv.CurrentRow.Cells(0).Value
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub dgvAccEntry_CellValueChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvAccEntry.CellValueChanged
+        Try
+            Dim ac As New Account_Class
+            ac.searchValue = dgvAccEntry.CurrentRow.Cells(0).Value
+            ac.getaccountName()
+            dgvAccEntry.CurrentRow.Cells(1).Value = ac.AccName
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Public Sub colx(ByVal data As AutoCompleteStringCollection, ByVal c As String)
+        Try
+            checkConn()
+            Dim cmd As New SqlCommand("select distinct itemno from tblInvtry ", conn)
+            Dim dr As SqlDataReader = cmd.ExecuteReader
+            While dr.Read
+                data.Add(dr.Item(0))
+            End While
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        Finally
+        End Try
+    End Sub
+
+    Private Sub dgvAccEntry_EditingControlShowing(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewEditingControlShowingEventArgs) Handles dgvAccEntry.EditingControlShowing
+        Dim autocomplete As New autocomplete_class
+        autocomplete.get_AccountNo()
+        If dgvAccEntry.CurrentCell.ColumnIndex = 0 Then
+            Dim text As TextBox = TryCast(e.Control, TextBox)
+            If text IsNot Nothing Then
+                text.AutoCompleteMode = AutoCompleteMode.Append
+                text.AutoCompleteSource = AutoCompleteSource.CustomSource
+                colx(autocomplete.COL, dgv.CurrentCellAddress.ToString)
+                text.AutoCompleteCustomSource = autocomplete.COL
+            End If
+        ElseIf TypeOf e.Control Is TextBox Then
+            Dim text As TextBox = TryCast(e.Control, TextBox)
+            text.AutoCompleteCustomSource = Nothing
+            text.AutoCompleteSource = AutoCompleteSource.None
+            text.AutoCompleteMode = AutoCompleteMode.None
+        End If
+    End Sub
+
+ 
+    Private Sub dgv_EditingControlShowing(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewEditingControlShowingEventArgs) Handles dgv.EditingControlShowing
+        Dim autocomplete As New autocomplete_class
+        autocomplete.get_itemCode()
+        If dgv.CurrentCell.ColumnIndex = 0 Then
+            Dim text As TextBox = TryCast(e.Control, TextBox)
+            If text IsNot Nothing Then
+                text.AutoCompleteMode = AutoCompleteMode.Append
+                text.AutoCompleteSource = AutoCompleteSource.CustomSource
+                Dim data As AutoCompleteStringCollection = New AutoCompleteStringCollection()
+                colx(data, dgv.CurrentCellAddress.ToString)
+                text.AutoCompleteCustomSource = data
+            End If
+        ElseIf TypeOf e.Control Is TextBox Then
+            Dim text As TextBox = TryCast(e.Control, TextBox)
+            text.AutoCompleteCustomSource = Nothing
+            text.AutoCompleteSource = AutoCompleteSource.None
+            text.AutoCompleteMode = AutoCompleteMode.None
+        End If
+    End Sub
+
+    Private Sub dgvAccEntry_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvAccEntry.CellContentClick
+
+    End Sub
+
+    Private Sub dgvAccEntry_MouseDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles dgvAccEntry.MouseDoubleClick
+        Try
+            list_for_selected_accounts.ShowDialog()
+            If list_for_selected_accounts.clickedItem = True Then
+                Dim r As Integer = frmAccountList.dgv.Rows.Count
+                dgvAccEntry.Rows.Add()
+                dgvAccEntry.Item(0, r).Value = frmAccountList.dgv.CurrentRow.Cells(0).Value
+            End If
+        Catch ex As Exception
+
+        End Try
+       
     End Sub
 End Class
