@@ -58,7 +58,9 @@ Public Class frmPurchasedReceiving
             dgv.Rows.Add()
             c += 1
         End While
-
+        dgv.Columns(5).ReadOnly = True
+        dgv.Columns(1).ReadOnly = True
+        dgv.Columns(2).ReadOnly = True
     End Sub
 
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -233,6 +235,10 @@ Public Class frmPurchasedReceiving
 
     Private Sub dgv_CellValueChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgv.CellValueChanged
         Try
+            If dgv.CurrentCell.ColumnIndex = 5 Then
+                Exit Sub
+            End If
+
             If dgv.CurrentCell.ColumnIndex = 0 Then
                 Dim ac As New Account_Class
                 ac.searchValue = dgv.CurrentRow.Cells(0).Value
@@ -323,27 +329,6 @@ Public Class frmPurchasedReceiving
         Finally
         End Try
     End Sub
-
-    Private Sub dgvAccEntry_EditingControlShowing(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewEditingControlShowingEventArgs) Handles dgvAccEntry.EditingControlShowing
-        Dim autocomplete As New autocomplete_class
-        autocomplete.get_AccountNo()
-        If dgvAccEntry.CurrentCell.ColumnIndex = 0 Then
-            Dim text As TextBox = TryCast(e.Control, TextBox)
-            If text IsNot Nothing Then
-                text.AutoCompleteMode = AutoCompleteMode.Append
-                text.AutoCompleteSource = AutoCompleteSource.CustomSource
-                colx(autocomplete.COL, dgv.CurrentCellAddress.ToString)
-                text.AutoCompleteCustomSource = autocomplete.COL
-            End If
-        ElseIf TypeOf e.Control Is TextBox Then
-            Dim text As TextBox = TryCast(e.Control, TextBox)
-            text.AutoCompleteCustomSource = Nothing
-            text.AutoCompleteSource = AutoCompleteSource.None
-            text.AutoCompleteMode = AutoCompleteMode.None
-        End If
-    End Sub
-
- 
     Private Sub dgv_EditingControlShowing(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewEditingControlShowingEventArgs) Handles dgv.EditingControlShowing
         Dim autocomplete As New autocomplete_class
         autocomplete.get_itemCode()

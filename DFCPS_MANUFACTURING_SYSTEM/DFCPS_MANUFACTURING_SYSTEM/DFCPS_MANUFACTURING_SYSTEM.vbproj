@@ -118,6 +118,12 @@
     <Compile Include="Accounting\frmAccountingMain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Accounting\frmARAP.Designer.vb">
+      <DependentUpon>frmARAP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\frmARAP.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Accounts\frmAccountList.Designer.vb">
       <DependentUpon>frmAccountList.vb</DependentUpon>
     </Compile>
@@ -941,6 +947,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\frmAccountingMain.resx">
       <DependentUpon>frmAccountingMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\frmARAP.resx">
+      <DependentUpon>frmARAP.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Accounts\frmAccountList.resx">
       <DependentUpon>frmAccountList.vb</DependentUpon>
