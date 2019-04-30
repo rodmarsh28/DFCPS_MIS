@@ -81,11 +81,16 @@
     <Reference Include="MetroFramework.Fonts">
       <HintPath>..\..\..\..\..\2018\github\DFCPS PRODUCTION\DFCPSPRODUCTION\HOME\dfcpsSackMaterialProduceMonitoring\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -118,10 +123,10 @@
     <Compile Include="Accounting\frmAccountingMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Accounting\frmARAP.Designer.vb">
-      <DependentUpon>frmARAP.vb</DependentUpon>
+    <Compile Include="Accounting\frmTransJournal.Designer.vb">
+      <DependentUpon>frmTransJournal.vb</DependentUpon>
     </Compile>
-    <Compile Include="Accounting\frmARAP.vb">
+    <Compile Include="Accounting\frmTransJournal.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Accounts\frmAccountList.Designer.vb">
@@ -158,6 +163,17 @@
     <Compile Include="Class\Account_Class.vb" />
     <Compile Include="Class\autocomplete_class.vb" />
     <Compile Include="Class\payable_class.vb" />
+    <Compile Include="DFCPS_MANUFACTURING_DBDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DFCPS_MANUFACTURING_DBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="frmFindTransaction.Designer.vb">
+      <DependentUpon>frmFindTransaction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFindTransaction.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Inventory Forms\AddNewItem.Designer.vb">
       <DependentUpon>AddNewItem.vb</DependentUpon>
     </Compile>
@@ -435,6 +451,11 @@
     </Compile>
     <Compile Include="Inventory Forms\list_for_selected accounts.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Model1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="public_event_class.vb" />
     <Compile Include="Purchases\frmItemRequisition.Designer.vb">
@@ -948,8 +969,8 @@
     <EmbeddedResource Include="Accounting\frmAccountingMain.resx">
       <DependentUpon>frmAccountingMain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Accounting\frmARAP.resx">
-      <DependentUpon>frmARAP.vb</DependentUpon>
+    <EmbeddedResource Include="Accounting\frmTransJournal.resx">
+      <DependentUpon>frmTransJournal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Accounts\frmAccountList.resx">
       <DependentUpon>frmAccountList.vb</DependentUpon>
@@ -974,6 +995,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDatabaseSettings.resx">
       <DependentUpon>frmDatabaseSettings.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFindTransaction.resx">
+      <DependentUpon>frmFindTransaction.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain_Form.resx">
       <DependentUpon>frmMain_Form.vb</DependentUpon>
@@ -1400,6 +1424,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="DFCPS_MANUFACTURING_DBDataSet.xsc">
+      <DependentUpon>DFCPS_MANUFACTURING_DBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DFCPS_MANUFACTURING_DBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DFCPS_MANUFACTURING_DBDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DFCPS_MANUFACTURING_DBDataSet.xss">
+      <DependentUpon>DFCPS_MANUFACTURING_DBDataSet.xsd</DependentUpon>
+    </None>
     <None Include="HR Information System\HRISDATASET.xsc">
       <DependentUpon>HRISDATASET.xsd</DependentUpon>
     </None>
@@ -1411,10 +1446,15 @@
     <None Include="HR Information System\HRISDATASET.xss">
       <DependentUpon>HRISDATASET.xsd</DependentUpon>
     </None>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.vb</LastGenOutput>
+    </EntityDeploy>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\DataSources\DFCPS_MANUFACTURING_DBEntities.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
