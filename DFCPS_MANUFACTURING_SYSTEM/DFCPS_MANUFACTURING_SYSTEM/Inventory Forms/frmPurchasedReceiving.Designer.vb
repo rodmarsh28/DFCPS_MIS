@@ -41,6 +41,12 @@ Partial Class frmPurchasedReceiving
         Me.Button2 = New System.Windows.Forms.Button()
         Me.BTNSAVE = New System.Windows.Forms.Button()
         Me.dgv = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.txtInvoice = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.txtMemo = New System.Windows.Forms.TextBox()
@@ -54,17 +60,14 @@ Partial Class frmPurchasedReceiving
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.lblTotDeb = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel3 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblTotDeb = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblTotCrd = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.txtQty = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvAccEntry, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -249,8 +252,42 @@ Partial Class frmPurchasedReceiving
         Me.dgv.Name = "dgv"
         Me.dgv.RowHeadersVisible = False
         Me.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.dgv.Size = New System.Drawing.Size(784, 571)
+        Me.dgv.Size = New System.Drawing.Size(784, 502)
         Me.dgv.TabIndex = 86
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Item No."
+        Me.Column1.Name = "Column1"
+        '
+        'Column8
+        '
+        Me.Column8.HeaderText = "Descrition"
+        Me.Column8.Name = "Column8"
+        Me.Column8.Width = 300
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "Unit"
+        Me.Column2.Name = "Column2"
+        Me.Column2.Width = 80
+        '
+        'Column4
+        '
+        Me.Column4.HeaderText = "Unit Price"
+        Me.Column4.Name = "Column4"
+        Me.Column4.Width = 80
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "Qty"
+        Me.Column5.Name = "Column5"
+        Me.Column5.Width = 80
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Amount"
+        Me.Column3.Name = "Column3"
         '
         'txtInvoice
         '
@@ -384,54 +421,20 @@ Partial Class frmPurchasedReceiving
         Me.Label7.TabIndex = 121
         Me.Label7.Text = "CREDIT TO ACCOUNT"
         '
-        'Column1
-        '
-        Me.Column1.HeaderText = "Item No."
-        Me.Column1.Name = "Column1"
-        '
-        'Column8
-        '
-        Me.Column8.HeaderText = "Descrition"
-        Me.Column8.Name = "Column8"
-        Me.Column8.Width = 300
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "Unit"
-        Me.Column2.Name = "Column2"
-        Me.Column2.Width = 80
-        '
-        'Column4
-        '
-        Me.Column4.HeaderText = "Unit Price"
-        Me.Column4.Name = "Column4"
-        Me.Column4.Width = 80
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "Qty"
-        Me.Column5.Name = "Column5"
-        Me.Column5.Width = 80
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "Amount"
-        Me.Column3.Name = "Column3"
-        '
         'StatusStrip1
         '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel3, Me.lblTotDeb, Me.ToolStripStatusLabel1, Me.ToolStripStatusLabel2})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel3, Me.lblTotDeb, Me.ToolStripStatusLabel1, Me.lblTotCrd})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 663)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(1140, 22)
         Me.StatusStrip1.TabIndex = 122
         Me.StatusStrip1.Text = "StatusStrip1"
         '
-        'ToolStripStatusLabel1
+        'ToolStripStatusLabel3
         '
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(68, 17)
-        Me.ToolStripStatusLabel1.Text = "Total Credit"
+        Me.ToolStripStatusLabel3.Name = "ToolStripStatusLabel3"
+        Me.ToolStripStatusLabel3.Size = New System.Drawing.Size(65, 17)
+        Me.ToolStripStatusLabel3.Text = "Total Debit"
         '
         'lblTotDeb
         '
@@ -439,17 +442,44 @@ Partial Class frmPurchasedReceiving
         Me.lblTotDeb.Size = New System.Drawing.Size(13, 17)
         Me.lblTotDeb.Text = "0"
         '
-        'ToolStripStatusLabel2
+        'ToolStripStatusLabel1
         '
-        Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
-        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(13, 17)
-        Me.ToolStripStatusLabel2.Text = "0"
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(69, 17)
+        Me.ToolStripStatusLabel1.Text = "Total Credit"
         '
-        'ToolStripStatusLabel3
+        'lblTotCrd
         '
-        Me.ToolStripStatusLabel3.Name = "ToolStripStatusLabel3"
-        Me.ToolStripStatusLabel3.Size = New System.Drawing.Size(64, 17)
-        Me.ToolStripStatusLabel3.Text = "Total Debit"
+        Me.lblTotCrd.Name = "lblTotCrd"
+        Me.lblTotCrd.Size = New System.Drawing.Size(13, 17)
+        Me.lblTotCrd.Text = "0"
+        '
+        'txtQty
+        '
+        Me.txtQty.Location = New System.Drawing.Point(44, 599)
+        Me.txtQty.Name = "txtQty"
+        Me.txtQty.Size = New System.Drawing.Size(700, 20)
+        Me.txtQty.TabIndex = 123
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Location = New System.Drawing.Point(9, 602)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(32, 13)
+        Me.Label9.TabIndex = 124
+        Me.Label9.Text = "QTY"
+        '
+        'Button1
+        '
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Location = New System.Drawing.Point(750, 598)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(46, 21)
+        Me.Button1.TabIndex = 125
+        Me.Button1.Text = ">>>"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'frmPurchasedReceiving
         '
@@ -457,6 +487,9 @@ Partial Class frmPurchasedReceiving
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1140, 685)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.txtQty)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.dgvAccEntry)
@@ -533,5 +566,8 @@ Partial Class frmPurchasedReceiving
     Friend WithEvents ToolStripStatusLabel3 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents lblTotDeb As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents ToolStripStatusLabel2 As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents lblTotCrd As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents txtQty As System.Windows.Forms.TextBox
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

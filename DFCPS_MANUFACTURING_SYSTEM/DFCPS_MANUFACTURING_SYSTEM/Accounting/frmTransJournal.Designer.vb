@@ -60,10 +60,6 @@ Partial Class frmTransJournal
         Me.AdtpTo = New System.Windows.Forms.DateTimePicker()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.AdtpFrom = New System.Windows.Forms.DateTimePicker()
-        Me.DFCPS_MANUFACTURING_DBDataSet = New DFCPS_MANUFACTURING_SYSTEM.DFCPS_MANUFACTURING_DBDataSet()
-        Me.PayAccountBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.PayAccountTableAdapter = New DFCPS_MANUFACTURING_SYSTEM.DFCPS_MANUFACTURING_DBDataSetTableAdapters.PayAccountTableAdapter()
-        Me.TableAdapterManager = New DFCPS_MANUFACTURING_SYSTEM.DFCPS_MANUFACTURING_DBDataSetTableAdapters.TableAdapterManager()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -114,8 +110,6 @@ Partial Class frmTransJournal
         Me.TabPage5.SuspendLayout()
         Me.TabPage6.SuspendLayout()
         Me.TabPage7.SuspendLayout()
-        CType(Me.DFCPS_MANUFACTURING_DBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PayAccountBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -498,115 +492,11 @@ Partial Class frmTransJournal
         Me.AdtpFrom.TabIndex = 6
         '
         'DFCPS_MANUFACTURING_DBDataSet
-        '
-        Me.DFCPS_MANUFACTURING_DBDataSet.DataSetName = "DFCPS_MANUFACTURING_DBDataSet"
-        Me.DFCPS_MANUFACTURING_DBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+
         '
         'PayAccountBindingSource
         '
-        Me.PayAccountBindingSource.DataMember = "PayAccount"
-        Me.PayAccountBindingSource.DataSource = Me.DFCPS_MANUFACTURING_DBDataSet
-        '
-        'PayAccountTableAdapter
-        '
-        Me.PayAccountTableAdapter.ClearBeforeFill = True
-        '
-        'TableAdapterManager
-        '
-        Me.TableAdapterManager.Accounts_PayableTableAdapter = Nothing
-        Me.TableAdapterManager.Accounts_ReceivableTableAdapter = Nothing
-        Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
-        Me.TableAdapterManager.General_Journal_TRTableAdapter = Nothing
-        Me.TableAdapterManager.General_JournalTableAdapter = Nothing
-        Me.TableAdapterManager.Item_RequisitionTableAdapter = Nothing
-        Me.TableAdapterManager.PayAccountTableAdapter = Me.PayAccountTableAdapter
-        Me.TableAdapterManager.PayAccountTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblAccDepartmentTableAdapter = Nothing
-        Me.TableAdapterManager.tblAccEntryTableAdapter = Nothing
-        Me.TableAdapterManager.tblAccHeaderTableAdapter = Nothing
-        Me.TableAdapterManager.tblAccSubHeaderTableAdapter = Nothing
-        Me.TableAdapterManager.tblAdjustmentTableAdapter = Nothing
-        Me.TableAdapterManager.tblAdjustmentTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblApprovedTransactionTableAdapter = Nothing
-        Me.TableAdapterManager.tblBenefitsPaymentSumTableAdapter = Nothing
-        Me.TableAdapterManager.tblCardsBalanceTableAdapter = Nothing
-        Me.TableAdapterManager.tblCardsProfileTableAdapter = Nothing
-        Me.TableAdapterManager.tblCheckVoucherTableAdapter = Nothing
-        Me.TableAdapterManager.tblCheckVoucherTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblChildrenInfoTableAdapter = Nothing
-        Me.TableAdapterManager.tblCOATableAdapter = Nothing
-        Me.TableAdapterManager.tblCrusherTableAdapter = Nothing
-        Me.TableAdapterManager.tblCrusherTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblCSRTableAdapter = Nothing
-        Me.TableAdapterManager.tblCSRTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblDepartmentProfileTableAdapter = Nothing
-        Me.TableAdapterManager.tblDesciplinaryActionTableAdapter = Nothing
-        Me.TableAdapterManager.tblDoffedTableAdapter = Nothing
-        Me.TableAdapterManager.tblDRTableAdapter = Nothing
-        Me.TableAdapterManager.tblDYRTableAdapter = Nothing
-        Me.TableAdapterManager.tblDYTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblEmployeesInfoTableAdapter = Nothing
-        Me.TableAdapterManager.tblFPITableAdapter = Nothing
-        Me.TableAdapterManager.tblFPITRTableAdapter = Nothing
-        Me.TableAdapterManager.tblInkMixtureTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblInvtryTableAdapter = Nothing
-        Me.TableAdapterManager.tblItemRequisitionTableAdapter = Nothing
-        Me.TableAdapterManager.tblItemRequisitionTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblItemTransactionTableAdapter = Nothing
-        Me.TableAdapterManager.tblItemWidthrawalTableAdapter = Nothing
-        Me.TableAdapterManager.tblJobOrderTableAdapter = Nothing
-        Me.TableAdapterManager.tblJobOrderTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblLeaveTableAdapter = Nothing
-        Me.TableAdapterManager.tblLoomSectionTableAdapter = Nothing
-        Me.TableAdapterManager.tblLoomSectionTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblLoomsTableAdapter = Nothing
-        Me.TableAdapterManager.tblManualPrintingTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblMRTableAdapter = Nothing
-        Me.TableAdapterManager.tblMRTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblOrderReleasedTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblPaidTableAdapter = Nothing
-        Me.TableAdapterManager.tblPayableTableAdapter = Nothing
-        Me.TableAdapterManager.tblPaymentsAmountAppliedTableAdapter = Nothing
-        Me.TableAdapterManager.tblPaymentsReceivedTableAdapter = Nothing
-        Me.TableAdapterManager.tblPayrollofEmployeesTableAdapter = Nothing
-        Me.TableAdapterManager.tblPayrollTableAdapter = Nothing
-        Me.TableAdapterManager.tblPDORFYTableAdapter = Nothing
-        Me.TableAdapterManager.tblPDORFYTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblPrintingTableAdapter = Nothing
-        Me.TableAdapterManager.tblPurchaseOrderTableAdapter = Nothing
-        Me.TableAdapterManager.tblPurchaseReceivedTableAdapter = Nothing
-        Me.TableAdapterManager.tblQATableAdapter = Nothing
-        Me.TableAdapterManager.tblQATRSTableAdapter = Nothing
-        Me.TableAdapterManager.tblQATRTableAdapter = Nothing
-        Me.TableAdapterManager.tblQuotationTableAdapter = Nothing
-        Me.TableAdapterManager.tblQuotationTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblReceivedTableAdapter = Nothing
-        Me.TableAdapterManager.tblReceivedTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblRecycleInputTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblRecycleOutputTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblRecycleTableAdapter = Nothing
-        Me.TableAdapterManager.tblRFPTableAdapter = Nothing
-        Me.TableAdapterManager.tblRMAdjustmentTableAdapter = Nothing
-        Me.TableAdapterManager.tblRMAdjustmentTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblRMInventoryTableAdapter = Nothing
-        Me.TableAdapterManager.tblRollPrintingTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblSalesInvoiceTableAdapter = Nothing
-        Me.TableAdapterManager.tblSalesInvoiceTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblSalesOrderTableAdapter = Nothing
-        Me.TableAdapterManager.tblSalesOrderTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblSettingsVariableTableAdapter = Nothing
-        Me.TableAdapterManager.tblSpendMoney_InvTableAdapter = Nothing
-        Me.TableAdapterManager.tblSpendMoney_ServTableAdapter = Nothing
-        Me.TableAdapterManager.tblSpendMoneyInvoice_InvTableAdapter = Nothing
-        Me.TableAdapterManager.tblSpendMoneyInvoice_ServTableAdapter = Nothing
-        Me.TableAdapterManager.tblSpendMoneyInvoiceTableAdapter = Nothing
-        Me.TableAdapterManager.tblSpendMoneyTableAdapter = Nothing
-        Me.TableAdapterManager.tblSpouseInfoTableAdapter = Nothing
-        Me.TableAdapterManager.tblStockOutTableAdapter = Nothing
-        Me.TableAdapterManager.tblStockOutTRTableAdapter = Nothing
-        Me.TableAdapterManager.tblSystemSettingsTableAdapter = Nothing
-        Me.TableAdapterManager.tblUsersTableAdapter = Nothing
-        Me.TableAdapterManager.UpdateOrder = DFCPS_MANUFACTURING_SYSTEM.DFCPS_MANUFACTURING_DBDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+     
         '
         'Column1
         '
@@ -942,8 +832,6 @@ Partial Class frmTransJournal
         Me.TabPage6.PerformLayout()
         Me.TabPage7.ResumeLayout(False)
         Me.TabPage7.PerformLayout()
-        CType(Me.DFCPS_MANUFACTURING_DBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PayAccountBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -966,10 +854,6 @@ Partial Class frmTransJournal
     Friend WithEvents TabPage5 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage6 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage7 As System.Windows.Forms.TabPage
-    Friend WithEvents DFCPS_MANUFACTURING_DBDataSet As DFCPS_MANUFACTURING_SYSTEM.DFCPS_MANUFACTURING_DBDataSet
-    Friend WithEvents PayAccountBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents PayAccountTableAdapter As DFCPS_MANUFACTURING_SYSTEM.DFCPS_MANUFACTURING_DBDataSetTableAdapters.PayAccountTableAdapter
-    Friend WithEvents TableAdapterManager As DFCPS_MANUFACTURING_SYSTEM.DFCPS_MANUFACTURING_DBDataSetTableAdapters.TableAdapterManager
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents DdtpTo As System.Windows.Forms.DateTimePicker
     Friend WithEvents Label4 As System.Windows.Forms.Label

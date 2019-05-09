@@ -123,6 +123,30 @@
     <Compile Include="Accounting\frmAccountingMain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Accounting\frmCheckVoucher.Designer.vb">
+      <DependentUpon>frmCheckVoucher.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\frmCheckVoucher.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\frmPettyCashVoucher.Designer.vb">
+      <DependentUpon>frmPettyCashVoucher.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\frmPettyCashVoucher.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\frmRequestForCash.Designer.vb">
+      <DependentUpon>frmRequestForCash.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\frmRequestForCash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\frmRequestForPayment.Designer.vb">
+      <DependentUpon>frmRequestForPayment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\frmRequestForPayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Accounting\frmTransJournal.Designer.vb">
       <DependentUpon>frmTransJournal.vb</DependentUpon>
     </Compile>
@@ -163,11 +187,6 @@
     <Compile Include="Class\Account_Class.vb" />
     <Compile Include="Class\autocomplete_class.vb" />
     <Compile Include="Class\payable_class.vb" />
-    <Compile Include="DFCPS_MANUFACTURING_DBDataSet.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DFCPS_MANUFACTURING_DBDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="frmFindTransaction.Designer.vb">
       <DependentUpon>frmFindTransaction.vb</DependentUpon>
     </Compile>
@@ -451,11 +470,6 @@
     </Compile>
     <Compile Include="Inventory Forms\list_for_selected accounts.vb">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Model1.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="public_event_class.vb" />
     <Compile Include="Purchases\frmItemRequisition.Designer.vb">
@@ -969,6 +983,18 @@
     <EmbeddedResource Include="Accounting\frmAccountingMain.resx">
       <DependentUpon>frmAccountingMain.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\frmCheckVoucher.resx">
+      <DependentUpon>frmCheckVoucher.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\frmPettyCashVoucher.resx">
+      <DependentUpon>frmPettyCashVoucher.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\frmRequestForCash.resx">
+      <DependentUpon>frmRequestForCash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\frmRequestForPayment.resx">
+      <DependentUpon>frmRequestForPayment.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Accounting\frmTransJournal.resx">
       <DependentUpon>frmTransJournal.vb</DependentUpon>
     </EmbeddedResource>
@@ -1424,17 +1450,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="DFCPS_MANUFACTURING_DBDataSet.xsc">
-      <DependentUpon>DFCPS_MANUFACTURING_DBDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DFCPS_MANUFACTURING_DBDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DFCPS_MANUFACTURING_DBDataSet.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DFCPS_MANUFACTURING_DBDataSet.xss">
-      <DependentUpon>DFCPS_MANUFACTURING_DBDataSet.xsd</DependentUpon>
-    </None>
     <None Include="HR Information System\HRISDATASET.xsc">
       <DependentUpon>HRISDATASET.xsd</DependentUpon>
     </None>
@@ -1446,10 +1461,6 @@
     <None Include="HR Information System\HRISDATASET.xss">
       <DependentUpon>HRISDATASET.xsd</DependentUpon>
     </None>
-    <EntityDeploy Include="Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.vb</LastGenOutput>
-    </EntityDeploy>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

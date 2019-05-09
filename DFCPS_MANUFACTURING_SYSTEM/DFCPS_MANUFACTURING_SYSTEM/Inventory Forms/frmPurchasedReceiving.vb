@@ -53,11 +53,6 @@ Public Class frmPurchasedReceiving
         generateNo()
         totAmount = 0.0
         lblTotal.Text = "Php " & Format(CDbl(totAmount), "N")
-        Dim c As Integer = 0
-        While c <= 10
-            dgv.Rows.Add()
-            c += 1
-        End While
         dgv.Columns(5).ReadOnly = True
         dgv.Columns(1).ReadOnly = True
         dgv.Columns(2).ReadOnly = True
@@ -71,11 +66,8 @@ Public Class frmPurchasedReceiving
             Dim r As Integer = dgv.Rows.Count
             dgv.Rows.Add()
             dgv.Item(0, r).Value = InventoryList.dgv.CurrentRow.Cells(0).Value
-            dgv.Item(1, r).Value = InventoryList.dgv.CurrentRow.Cells(1).Value
-            dgv.Item(2, r).Value = InventoryList.dgv.CurrentRow.Cells(2).Value
-            dgv.Item(3, r).Value = InventoryList.dgv.CurrentRow.Cells(3).Value
             InventoryList.clickedItem = False
-            dgv.Item(6, r).Value = InventoryList.dgv.CurrentRow.Cells(7).Value
+            txtQty.Text = "1"
             lblTotal.Text = "Php " & Format(totAmount, "N")
         End If
     End Sub
@@ -109,21 +101,12 @@ Public Class frmPurchasedReceiving
                     .Parameters.AddWithValue("@STATUS", SqlDbType.VarChar).Value = ""
                 End With
                 cmd.ExecuteNonQuery()
-                account_entry()
                 ADD_INVENTORY()
                 col = col + 1
             End While
-            'If lblClearingAcc.Text <> "" Then
-            '    Dim ac As New accEntry_class
-            '    ac.refno = txtRefNo.Text
-            '    ac.account = txtClearingAcc.Text
-            '    ac.memo = txtMemo.Text
-            '    ac.debit = 0
-            '    ac.credit = totAmount
-            '    ac.insert_Acc_entry_class()
-            'End If
-            add_payables()
-            Dim req As New Puchase_Requisition_class
+            'add_payables()
+            account_entry()
+            account_credit_entry()
             MsgBox(lblFormMode.Text & " POSTED !", MsgBoxStyle.Information, "SUCCESS")
             Me.Close()
         Catch ex As Exception
@@ -132,12 +115,25 @@ Public Class frmPurchasedReceiving
     End Sub
     Sub account_entry()
         Dim ac As New accEntry_class
-        ac.refno = txtRefNo.Text
-        ac.account = dgv.Item(6, col).Value
-        ac.memo = txtMemo.Text
-        ac.debit = dgv.Item(5, col).Value
-        ac.credit = 0
-        ac.insert_Acc_entry_class()
+        For Each row As DataGridViewRow In dgv.Rows
+            ac.refno = txtRefNo.Text
+            ac.account = row.Cells(6).Value
+            ac.memo = txtMemo.Text
+            ac.debit = row.Cells(5).Value
+            ac.credit = 0
+            ac.insert_Acc_entry_class()
+        Next
+    End Sub
+    Sub account_credit_entry()
+        Dim ac As New accEntry_class
+        For Each row As DataGridViewRow In dgvAccEntry.Rows
+            ac.refno = txtRefNo.Text
+            ac.account = row.Cells(0).Value
+            ac.memo = txtMemo.Text
+            ac.debit = 0
+            ac.credit = row.Cells(2).Value
+            ac.insert_Acc_entry_class()
+        Next
     End Sub
     Sub add_payables()
         Dim payable As New payable_class
@@ -199,6 +195,7 @@ Public Class frmPurchasedReceiving
             totAmount = totAmount + dgv.Rows(i).Cells(5).Value
         Next
         lblTotal.Text = "Php " & Format(totAmount, "N")
+        lblTotDeb.Text = "Php " & Format(totAmount, "N")
     End Sub
     Sub sumofAmountPerAccount()
         totAmount = 0
@@ -206,26 +203,26 @@ Public Class frmPurchasedReceiving
     End Sub
 
     Private Sub dgv_CellMouseDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dgv.CellMouseDoubleClick
-        Try
-            Dim sC As Integer = dgv.CurrentCell.ColumnIndex
-            If sC <= 0 Then
-                InventoryList.mode = "Receiving"
-                InventoryList.ShowDialog()
-                If InventoryList.clickedItem = True Then
-                    Dim r As Integer = dgv.CurrentRow.Index
-                    dgv.Item(0, r).Value = InventoryList.dgv.CurrentRow.Cells(0).Value
-                    dgv.Item(1, r).Value = InventoryList.dgv.CurrentRow.Cells(1).Value
-                    dgv.Item(2, r).Value = InventoryList.dgv.CurrentRow.Cells(2).Value
-                    dgv.Item(3, r).Value = InventoryList.dgv.CurrentRow.Cells(3).Value
-                    dgv.Item(4, r).Value = "1"
-                    dgv.Item(5, r).Value = Format(InventoryList.dgv.CurrentRow.Cells(3).Value)
-                    dgv.Item(6, r).Value = InventoryList.dgv.CurrentRow.Cells(7).Value
-                    lblTotal.Text = "Php " & Format(totAmount, "N")
-                    InventoryList.clickedItem = False
-                End If
-            End If
-        Catch ex As Exception
-        End Try
+        'Try
+        '    Dim sC As Integer = dgv.CurrentCell.ColumnIndex
+        '    If sC <= 0 Then
+        '        InventoryList.mode = "Receiving"
+        '        InventoryList.ShowDialog()
+        '        If InventoryList.clickedItem = True Then
+        '            Dim r As Integer = dgv.CurrentRow.Index
+        '            dgv.Item(0, r).Value = InventoryList.dgv.CurrentRow.Cells(0).Value
+        '            dgv.Item(1, r).Value = InventoryList.dgv.CurrentRow.Cells(1).Value
+        '            dgv.Item(2, r).Value = InventoryList.dgv.CurrentRow.Cells(2).Value
+        '            dgv.Item(3, r).Value = InventoryList.dgv.CurrentRow.Cells(3).Value
+        '            dgv.Item(4, r).Value = "1"
+        '            dgv.Item(5, r).Value = Format(InventoryList.dgv.CurrentRow.Cells(3).Value)
+        '            dgv.Item(6, r).Value = InventoryList.dgv.CurrentRow.Cells(7).Value
+        '            lblTotal.Text = "Php " & Format(totAmount, "N")
+        '            InventoryList.clickedItem = False
+        '        End If
+        '    End If
+        'Catch ex As Exception
+        'End Try
     End Sub
 
     Private Sub dgv_CellMouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dgv.CellMouseDown
@@ -238,15 +235,14 @@ Public Class frmPurchasedReceiving
             If dgv.CurrentCell.ColumnIndex = 5 Then
                 Exit Sub
             End If
-
             If dgv.CurrentCell.ColumnIndex = 0 Then
                 Dim ac As New Account_Class
-                ac.searchValue = dgv.CurrentRow.Cells(0).Value
+                ac.searchValue = dgv.Item(0, dgv.Rows.Count).Value
                 ac.get_itemAccountInfo()
                 dgv.Rows(dgv.CurrentRow.Index).Cells(1).Value = ac.itemdesc
                 dgv.Rows(dgv.CurrentRow.Index).Cells(2).Value = ac.unit
                 dgv.Rows(dgv.CurrentRow.Index).Cells(3).Value = Format(ac.unitprice, "N")
-                dgv.Rows(dgv.CurrentRow.Index).Cells(4).Value = Format(ac.qty, "N0")
+                dgv.Rows(dgv.CurrentRow.Index).Cells(4).Value = txtQty.Text
                 dgv.Rows(dgv.CurrentRow.Index).Cells(6).Value = ac.assetAcc
             End If
             dgv.Rows(dgv.CurrentRow.Index).Cells(5).Value = Format(CDbl(dgv.CurrentRow.Cells(3).Value) * CDbl(dgv.CurrentRow.Cells(4).Value), "N")
@@ -298,9 +294,9 @@ Public Class frmPurchasedReceiving
             Dim sC As Integer = dgvAccEntry.CurrentCell.ColumnIndex
             If sC <= 0 Then
                 frmAccountList.ShowDialog()
-                Dim r As Integer = frmAccountList.dgv.Rows.Count
+                Dim r As Integer = dgvAccEntry.Rows.Count
                 dgvAccEntry.Rows.Add()
-                dgvAccEntry.Item(0, r).value = frmAccountList.dgv.CurrentRow.Cells(0).Value
+                dgvAccEntry.Item(0, r).Value = frmAccountList.dgv.CurrentRow.Cells(0).Value
             End If
         Catch ex As Exception
         End Try
@@ -309,9 +305,16 @@ Public Class frmPurchasedReceiving
     Private Sub dgvAccEntry_CellValueChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvAccEntry.CellValueChanged
         Try
             Dim ac As New Account_Class
-            ac.searchValue = dgvAccEntry.CurrentRow.Cells(0).Value
-            ac.getaccountName()
-            dgvAccEntry.CurrentRow.Cells(1).Value = ac.AccName
+            For Each row As DataGridViewRow In dgvAccEntry.Rows
+                ac.searchValue = row.Cells(0).Value
+                ac.getaccountName()
+                row.Cells(1).Value = ac.AccName
+            Next
+            Dim totalcrd As Double = 0
+            For Each row As DataGridViewRow In dgvAccEntry.Rows
+                totalcrd = totalcrd + CDbl(row.Cells(2).Value)
+            Next
+            lblTotCrd.Text = Format(totalcrd, "N")
         Catch ex As Exception
 
         End Try
@@ -355,9 +358,21 @@ Public Class frmPurchasedReceiving
 
     Private Sub dgvAccEntry_MouseDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles dgvAccEntry.MouseDoubleClick
         Try
-            list_for_selected_accounts.ShowDialog()
+            list_for_selected_accounts.get_clearing_accounts()
+            If list_for_selected_accounts.HASROWS = 0 Then
+                frmAccountList.ShowDialog()
+                If frmAccountList.successClick = True Then
+                    Dim r As Integer = dgvAccEntry.Rows.Count
+                    dgvAccEntry.Rows.Add()
+                    dgvAccEntry.Item(0, r).Value = frmAccountList.dgv.CurrentRow.Cells(0).Value
+                    frmAccountList.successClick = False
+                End If
+            Else
+                list_for_selected_accounts.ShowDialog()
+            End If
+
             If list_for_selected_accounts.clickedItem = True Then
-                Dim r As Integer = frmAccountList.dgv.Rows.Count
+                Dim r As Integer = dgvAccEntry.Rows.Count
                 dgvAccEntry.Rows.Add()
                 dgvAccEntry.Item(0, r).Value = frmAccountList.dgv.CurrentRow.Cells(0).Value
             End If
@@ -365,5 +380,25 @@ Public Class frmPurchasedReceiving
 
         End Try
        
+    End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        If txtQty.Text = "" Then
+            txtQty.Text = "1"
+        End If
+        InventoryList.mode = "Receiving"
+        InventoryList.ShowDialog()
+        If InventoryList.clickedItem = True Then
+            Dim r As Integer = dgv.Rows.Count
+            dgv.Rows.Add()
+            dgv.Item(0, r).Value = InventoryList.dgv.CurrentRow.Cells(0).Value
+            dgv.Item(1, r).Value = InventoryList.dgv.CurrentRow.Cells(1).Value
+            dgv.Item(2, r).Value = InventoryList.dgv.CurrentRow.Cells(2).Value
+            dgv.Item(3, r).Value = InventoryList.dgv.CurrentRow.Cells(3).Value
+            dgv.Item(4, r).Value = txtQty.Text
+            dgv.Item(5, r).Value = CDbl(InventoryList.dgv.CurrentRow.Cells(3).Value) * CDbl(txtQty.Text)
+            lblTotal.Text = "Php " & Format(totAmount, "N")
+            InventoryList.clickedItem = False
+        End If
     End Sub
 End Class

@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class list_for_selected_accounts
+    Public HASROWS As Boolean
     Public clickedItem As Boolean
     Sub get_clearing_accounts()
         Dim dt As New DataTable
@@ -29,6 +30,11 @@ Public Class list_for_selected_accounts
                     lst.SubItems.Add(If(row(i) IsNot Nothing, row(i).ToString, ""))
                 Next
             Next
+            If dt.Rows.Count = 0 Then
+                HASROWS = False
+            Else
+                HASROWS = True
+            End If
             LV.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent)
             LV.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize)
             If rowindex < LV.Items.Count Then
@@ -43,5 +49,9 @@ Public Class list_for_selected_accounts
     Private Sub LV_MouseDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles LV.MouseDoubleClick
         clickedItem = True
         Me.Close()
+    End Sub
+
+    Private Sub list_for_selected_accounts_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
     End Sub
 End Class
